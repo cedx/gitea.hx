@@ -1,0 +1,52 @@
+{
+	"bugs": "https://git.belin.io/cedx/gitea.hx/issues",
+	"description": "Gitea client library.",
+	"homepage": "https://docs.belin.io/gitea.hx",
+	"license": "MIT",
+	"main": "./lib/js/index.js",
+	"name": "@cedx/gitea",
+	"type": "commonjs",
+	"types": "./lib/js/index.d.ts",
+	"version": "0.1.0",
+	"author": {
+		"email": "cedric@belin.io",
+		"name": "Cédric Belin",
+		"url": "https://belin.io"
+	},
+	"devDependencies": {
+		"@cedx/coveralls": "^10.1.0",
+		"terser": "^5.3.4"
+	},
+	"engines": {
+		"node": ">=14.13.0"
+	},
+	"exports": {
+		"import": "./lib/js/index.mjs",
+		"require": "./lib/js/index.js"
+	},
+	"files": [
+		"build/",
+		"lib/js/"
+	],
+	"funding": {
+		"type": "patreon",
+		"url": "https://www.patreon.com/cedx"
+	},
+	"keywords": [
+		"api",
+		"client",
+		"git",
+		"gitea",
+		"scm",
+		"vcs"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://git.belin.io/cedx/gitea.hx.git"
+	},
+	"scripts": {
+		"coverage": "coveralls var/gitea.info",
+		"dist": "terser --config-file=etc/terser.json --output=build/gitea.min.js build/gitea.js",
+		"prepack": "pwsh tool/dist.ps1"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"classPath": "src/",
+	"contributors": ["cedx"],
+	"description": "Gitea client library.",
+	"license": "MIT",
+	"name": "gitea",
+	"releasenote": "Initial release.",
+	"tags": ["api", "client", "cross", "git", "gitea", "scm", "vcs"],
+	"url": "https://docs.belin.io/gitea.hx",
+	"version": "0.1.0"
+}

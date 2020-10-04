@@ -1,0 +1,40 @@
+{
+	"description": "Gitea client library.",
+	"homepage": "https://docs.belin.io/gitea.hx",
+	"license": "MIT",
+	"name": "cedx/gitea",
+	"type": "library",
+	"version": "0.1.0",
+	"authors": [
+		{"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
+	],
+	"autoload": {
+		"psr-4": {"gitea\\": "lib/php/gitea/"}
+	},
+	"config": {
+		"optimize-autoloader": true
+	},
+	"funding": [
+		{"type": "patreon", "url": "https://www.patreon.com/cedx"}
+	],
+	"keywords": [
+		"api",
+		"client",
+		"git",
+		"gitea",
+		"scm",
+		"vcs"
+	],
+	"require": {
+		"php": ">=7.4.0",
+		"ext-mbstring": "*",
+		"cedx/haxe": "^1.3.0"
+	},
+	"scripts": {
+		"coverage": "coveralls var/gitea.info"
+	},
+	"support": {
+		"docs": "https://api.belin.io/gitea.hx",
+		"issues": "https://git.belin.io/cedx/gitea.hx/issues"
+	}
+}
