@@ -1,0 +1,6 @@
+--class-path src
+--define analyzer-optimize
+
+gitea.misc.MarkdownOption
+gitea.misc.ServerVersion
+gitea.user.UserHeatmapData
