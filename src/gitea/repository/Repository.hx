@@ -46,6 +46,9 @@ import haxe.DynamicAccess;
 	/** Value indicating whether this repository is private. **/
 	public var isPrivate = false;
 
+	/** Value indicating whether this repository is a template. **/
+	public var isTemplate = false;
+
 	/** The repository name. **/
 	public var name(get, null) = "";
 
@@ -105,6 +108,7 @@ import haxe.DynamicAccess;
 		if (map.exists("size") && Std.isOfType(map["size"], Int)) model.size = map["size"];
 		if (map.exists("ssh_url") && Std.isOfType(map["ssh_url"], String)) model.sshUrl = map["ssh_url"];
 		if (map.exists("stars_count") && Std.isOfType(map["stars_count"], Int)) model.starsCount = map["stars_count"];
+		if (map.exists("template") && Std.isOfType(map["template"], Bool)) model.isTemplate = map["template"];
 		if (map.exists("updated_at") && Std.isOfType(map["updated_at"], String)) model.updatedAt = DateTime.fromString(map["updated_at"]);
 		if (map.exists("watchers_count") && Std.isOfType(map["watchers_count"], Int)) model.watchersCount = map["watchers_count"];
 		if (map.exists("website") && Std.isOfType(map["website"], String)) model.website = map["website"];
