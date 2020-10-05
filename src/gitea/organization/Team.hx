@@ -21,7 +21,7 @@ class Team {
 	public var name = "";
 
 	/** The team organization. **/
-	// TODO: public var organization: Null<Organization> = null;
+	public var organization: Null<Organization> = null;
 
 	/** The team permission. **/
 	public var permission: TeamPermission = None;
@@ -39,7 +39,7 @@ class Team {
 		if (map.exists("description") && Std.isOfType(map["description"], String)) model.description = map["description"];
 		if (map.exists("includes_all_repositories") && Std.isOfType(map["includes_all_repositories"], Bool)) model.includesAllRepositories = map["includes_all_repositories"];
 		if (map.exists("name") && Std.isOfType(map["name"], String)) model.name = map["name"];
-		// TODO: if (map.exists("organization") && Reflect.isObject(map["organization"])) model.organization = Organization.fromJson(map["organization"]);
+		if (map.exists("organization") && Reflect.isObject(map["organization"])) model.organization = Organization.fromJson(map["organization"]);
 		if (map.exists("permission") && Std.isOfType(map["permission"], String)) model.permission = map["permission"];
 		if (map.exists("units") && Std.isOfType(map["units"], Array)) model.units = map["units"];
 		return model;
