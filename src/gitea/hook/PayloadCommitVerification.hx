@@ -1,4 +1,4 @@
-package gitea.webhook;
+package gitea.hook;
 
 import haxe.DynamicAccess;
 
