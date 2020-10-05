@@ -27,7 +27,7 @@ class Team {
 	public var permission: TeamPermission = None;
 
 	/** The units that this team owns. **/
-	public final units: Array<String> = [];
+	public var units: Array<String> = [];
 
 	/** Creates a new team. **/
 	public function new(id: Int) this.id = id;
@@ -39,9 +39,9 @@ class Team {
 		if (map.exists("description") && Std.isOfType(map["description"], String)) model.description = map["description"];
 		if (map.exists("includes_all_repositories") && Std.isOfType(map["includes_all_repositories"], Bool)) model.includesAllRepositories = map["includes_all_repositories"];
 		if (map.exists("name") && Std.isOfType(map["name"], String)) model.name = map["name"];
-		// TODO: if (map.exists("organization") && Std.isOfType(map["organization"], Object)) model.organization = Organization.fromJson(map["organization"]);
+		// TODO: if (map.exists("organization") && Reflect.isObject(map["organization"])) model.organization = Organization.fromJson(map["organization"]);
 		if (map.exists("permission") && Std.isOfType(map["permission"], String)) model.permission = map["permission"];
-		if (map.exists("units") && Std.isOfType(map["units"], Array)) for (unit in (map["units"]: Array<String>)) model.units.push(unit);
+		if (map.exists("units") && Std.isOfType(map["units"], Array)) model.units = map["units"];
 		return model;
 	}
 }

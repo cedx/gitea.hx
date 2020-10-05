@@ -8,7 +8,7 @@ import haxe.DynamicAccess;
 @:structInit
 class User {
 
-	/** The URL to the user's avatar. **/
+	/** The URL of the user's avatar. **/
 	public var avatarUrl = "";
 
 	/** The creation date. **/
@@ -32,7 +32,7 @@ class User {
 	/** The last connection date. **/
 	public var lastLogin: Null<Date> = null;
 
-	/** The name of the Gitea account. **/
+	/** The name of the user account. **/
 	public var login = "";
 
 	/** Creates a new user. **/
