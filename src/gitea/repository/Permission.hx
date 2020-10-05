@@ -3,9 +3,7 @@ package gitea.repository;
 import haxe.DynamicAccess;
 
 /** Represents a set of permissions. **/
-@:expose
-@:structInit
-class Permission {
+@:expose class Permission {
 
 	/** Value indicating whether administrator access is allowed. **/
 	public var admin = false;

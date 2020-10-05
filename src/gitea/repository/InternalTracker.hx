@@ -3,9 +3,7 @@ package gitea.repository;
 import haxe.DynamicAccess;
 
 /** Represents settings for an internal tracker. **/
-@:expose
-@:structInit
-class InternalTracker {
+@:expose class InternalTracker {
 
 	/** Value indicating whether to allow only contributors to track time. **/
 	public var allowOnlyContributorsToTrackTime = false;

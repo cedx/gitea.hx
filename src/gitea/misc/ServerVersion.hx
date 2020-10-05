@@ -3,9 +3,7 @@ package gitea.misc;
 import haxe.DynamicAccess;
 
 /** Wraps the version of the Gitea server. **/
-@:expose
-@:structInit
-class ServerVersion {
+@:expose class ServerVersion {
 
 	/** The version number. **/
 	public final version: String;

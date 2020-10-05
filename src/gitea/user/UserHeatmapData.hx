@@ -3,9 +3,7 @@ package gitea.user;
 import haxe.DynamicAccess;
 
 /** Represents the data needed to create a user heatmap. **/
-@:expose
-@:structInit
-class UserHeatmapData {
+@:expose class UserHeatmapData {
 
 	/** The contribution number. **/
 	public var contributions: Int;

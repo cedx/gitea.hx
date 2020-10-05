@@ -4,9 +4,7 @@ import datetime.DateTime;
 import haxe.DynamicAccess;
 
 /** Represents a commit. **/
-@:expose
-@:structInit
-class PayloadCommit {
+@:expose class PayloadCommit {
 
 	/** The list of added files. **/
 	public var added: Array<String> = [];

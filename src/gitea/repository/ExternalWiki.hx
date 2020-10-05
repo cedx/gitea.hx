@@ -3,9 +3,7 @@ package gitea.repository;
 import haxe.DynamicAccess;
 
 /** Represents settings for an external wiki. **/
-@:expose
-@:structInit
-class ExternalWiki {
+@:expose class ExternalWiki {
 
 	/** The URL of the external wiki. **/
 	public var url: String;

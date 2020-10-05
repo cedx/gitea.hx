@@ -3,9 +3,7 @@ package gitea.hook;
 import haxe.DynamicAccess;
 
 /** Represents the author or committer of a commit. **/
-@:expose
-@:structInit
-class PayloadUser {
+@:expose class PayloadUser {
 
 	/** The mail address. **/
 	public final email: String;

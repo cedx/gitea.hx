@@ -4,9 +4,7 @@ import datetime.DateTime;
 import haxe.DynamicAccess;
 
 /** Represents a Gitea user. **/
-@:expose
-@:structInit
-class User {
+@:expose class User {
 
 	/** The URL of the user's avatar. **/
 	public var avatarUrl = "";

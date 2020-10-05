@@ -3,9 +3,7 @@ package gitea.repository;
 import haxe.DynamicAccess;
 
 /** Represents settings for an external tracker. **/
-@:expose
-@:structInit
-class ExternalTracker {
+@:expose class ExternalTracker {
 
 	/** The URL format. **/
 	public var format = "";

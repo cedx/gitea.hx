@@ -3,9 +3,7 @@ package gitea.organization;
 import haxe.DynamicAccess;
 
 /** Represents an organization. **/
-@:expose
-@:structInit
-class Organization {
+@:expose class Organization {
 
 	/** The URL of the organization's avatar. **/
 	public var avatarUrl = "";
@@ -23,7 +21,7 @@ class Organization {
 	public var location = "";
 
 	/** Value indicating whether the repository administrator can change access to teams. **/
-	public var repoAdminChangeTeamAccess = false;
+	public var repoAdminCanChangeTeamAccess = false;
 
 	/** The name of the organization account. **/
 	public var username = "";
@@ -44,7 +42,7 @@ class Organization {
 		if (map.exists("description") && Std.isOfType(map["description"], String)) model.description = map["description"];
 		if (map.exists("full_name") && Std.isOfType(map["full_name"], String)) model.fullName = map["full_name"];
 		if (map.exists("location") && Std.isOfType(map["location"], String)) model.location = map["location"];
-		if (map.exists("repo_admin_change_team_access") && Std.isOfType(map["repo_admin_change_team_access"], Bool)) model.repoAdminChangeTeamAccess = map["repo_admin_change_team_access"];
+		if (map.exists("repo_admin_change_team_access") && Std.isOfType(map["repo_admin_change_team_access"], Bool)) model.repoAdminCanChangeTeamAccess = map["repo_admin_change_team_access"];
 		if (map.exists("username") && Std.isOfType(map["username"], String)) model.username = map["username"];
 		if (map.exists("visibility") && Std.isOfType(map["visibility"], String)) model.visibility = map["visibility"];
 		if (map.exists("website") && Std.isOfType(map["website"], String)) model.website = map["website"];

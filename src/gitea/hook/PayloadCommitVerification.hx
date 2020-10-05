@@ -3,9 +3,10 @@ package gitea.hook;
 import haxe.DynamicAccess;
 
 /** Represents the GPG verification of a commit. **/
-@:expose
-@:structInit
-class PayloadCommitVerification {
+@:expose class PayloadCommitVerification {
+
+	/** Value indicating whether the verification has succeeded. **/
+	public var isVerified = false;
 
 	/** A custom message sent with the verification request. **/
 	public var payload = "";
@@ -19,9 +20,6 @@ class PayloadCommitVerification {
 	/** The user who signed the commit. **/
 	public var signer: Null<PayloadUser> = null;
 
-	/** Value indicating whether the verification has succeeded. **/
-	public var verified = false;
-
 	/** Creates a new payload commit verification. **/
 	public function new() {}
 
@@ -32,7 +30,7 @@ class PayloadCommitVerification {
 		if (map.exists("reason") && Std.isOfType(map["reason"], String)) model.reason = map["reason"];
 		if (map.exists("signer") && Reflect.isObject(map["signer"])) model.signer = PayloadUser.fromJson(map["signer"]);
 		if (map.exists("signature") && Std.isOfType(map["signature"], String)) model.signature = map["signature"];
-		if (map.exists("verified") && Std.isOfType(map["verified"], Bool)) model.verified = map["verified"];
+		if (map.exists("verified") && Std.isOfType(map["verified"], Bool)) model.isVerified = map["verified"];
 		return model;
 	}
 }
