@@ -3,6 +3,8 @@ package gitea.organization;
 import haxe.DynamicAccess;
 
 /** Represents an organization. **/
+@:expose
+@:structInit
 class Organization {
 
 	/** The URL of the organization's avatar. **/

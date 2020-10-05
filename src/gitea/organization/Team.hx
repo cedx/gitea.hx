@@ -3,6 +3,8 @@ package gitea.organization;
 import haxe.DynamicAccess;
 
 /** Represents a team in an organization. **/
+@:expose
+@:structInit
 class Team {
 
 	/** Value indicating whether this team can create organization repositories. **/
