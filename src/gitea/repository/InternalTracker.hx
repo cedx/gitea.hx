@@ -10,14 +10,14 @@ class InternalTracker {
 	/** Value indicating whether to allow only contributors to track time. **/
 	public var allowOnlyContributorsToTrackTime = false;
 
-	/** Value indicating whether to enable issue dependencies. **/
+	/** Value indicating whether to enable dependencies for issues and pull requests. **/
 	public var enableIssueDependencies = false;
 
-	/** Value indicating whether to enable the time tracker. **/
+	/** Value indicating whether to enable the time tracking. **/
 	public var enableTimeTracker = false;
 
 	/** Creates a new internal tracker. **/
-	public function new () {}
+	public function new() {}
 
 	/** Creates a new internal tracker from the specified JSON map. **/
 	public static function fromJson(map: DynamicAccess<Bool>) {
