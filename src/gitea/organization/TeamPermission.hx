@@ -1,4 +1,4 @@
-package gitea;
+package gitea.organization;
 
 /** Defines the permission of a team. **/
 enum abstract TeamPermission(String) {

@@ -40,15 +40,15 @@ class User {
 
 	/** Creates a new user from the specified JSON map. **/
 	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final user = new User(map.exists("id") && Std.isOfType(map["id"], Int) ? map["id"] : -1);
-		if (map.exists("avatar_url") && Std.isOfType(map["avatar_url"], String)) user.avatarUrl = map["avatar_url"];
-		if (map.exists("created") && Std.isOfType(map["created"], String)) user.created = DateTime.fromString(map["created"]);
-		if (map.exists("email") && Std.isOfType(map["email"], String)) user.email = map["email"];
-		if (map.exists("full_name") && Std.isOfType(map["full_name"], String)) user.fullName = map["full_name"];
-		if (map.exists("is_admin") && Std.isOfType(map["is_admin"], Bool)) user.isAdmin = map["is_admin"];
-		if (map.exists("language") && Std.isOfType(map["language"], String)) user.language = map["language"];
-		if (map.exists("last_login") && Std.isOfType(map["last_login"], String)) user.lastLogin = DateTime.fromString(map["last_login"]);
-		if (map.exists("login") && Std.isOfType(map["login"], String)) user.login = map["login"];
-		return user;
+		final model = new User(map.exists("id") && Std.isOfType(map["id"], Int) ? map["id"] : -1);
+		if (map.exists("avatar_url") && Std.isOfType(map["avatar_url"], String)) model.avatarUrl = map["avatar_url"];
+		if (map.exists("created") && Std.isOfType(map["created"], String)) model.created = DateTime.fromString(map["created"]);
+		if (map.exists("email") && Std.isOfType(map["email"], String)) model.email = map["email"];
+		if (map.exists("full_name") && Std.isOfType(map["full_name"], String)) model.fullName = map["full_name"];
+		if (map.exists("is_admin") && Std.isOfType(map["is_admin"], Bool)) model.isAdmin = map["is_admin"];
+		if (map.exists("language") && Std.isOfType(map["language"], String)) model.language = map["language"];
+		if (map.exists("last_login") && Std.isOfType(map["last_login"], String)) model.lastLogin = DateTime.fromString(map["last_login"]);
+		if (map.exists("login") && Std.isOfType(map["login"], String)) model.login = map["login"];
+		return model;
 	}
 }
