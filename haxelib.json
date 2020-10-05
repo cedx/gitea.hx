@@ -1,6 +1,7 @@
 {
 	"classPath": "src/",
 	"contributors": ["cedx"],
+	"dependencies": {"datetime": "3.1.4"},
 	"description": "Gitea client library.",
 	"license": "MIT",
 	"name": "gitea",

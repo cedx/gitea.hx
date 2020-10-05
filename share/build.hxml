@@ -1,6 +1,9 @@
 --class-path src
 --define analyzer-optimize
+--library datetime:3.1.4
 
 gitea.misc.MarkdownOption
 gitea.misc.ServerVersion
+gitea.repository.StatusState
+gitea.user.User
 gitea.user.UserHeatmapData
