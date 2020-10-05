@@ -11,6 +11,7 @@ gitea.organization.Organization
 gitea.organization.OrganizationVisibility
 gitea.organization.Team
 gitea.organization.TeamPermission
+gitea.repository.Permission
 gitea.repository.StatusState
 gitea.user.User
 gitea.user.UserHeatmapData

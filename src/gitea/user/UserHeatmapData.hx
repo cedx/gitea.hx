@@ -8,20 +8,20 @@ import haxe.DynamicAccess;
 class UserHeatmapData {
 
 	/** The contribution number. **/
-	public final contributions = 0;
+	public var contributions: Int;
 
 	/** The contributions date.  **/
-	public final timestamp: Null<Date> = null;
+	public final timestamp: Date;
 
 	/** Creates a new heatmap data. **/
-	public function new(contributions: Int, timestamp: Date) {
+	public function new(timestamp: Date, contributions = 0) {
 		this.contributions = contributions;
 		this.timestamp = timestamp;
 	}
 
 	/** Creates a new heatmap data from the specified JSON map. **/
 	public static function fromJson(map: DynamicAccess<Int>) return new UserHeatmapData(
-		map.exists("contributions") ? map["contributions"] : 0,
-		map.exists("timestamp") ? Date.fromTime(map["timestamp"] * 1000) : null
+		map.exists("timestamp") ? Date.fromTime(map["timestamp"] * 1000) : Date.now(),
+		map.exists("contributions") ? map["contributions"] : 0
 	);
 }

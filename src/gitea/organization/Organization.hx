@@ -22,7 +22,7 @@ class Organization {
 	/** The organization's location. **/
 	public var location = "";
 
-	/** Value indicating whether the repository administrator can add and remove access to teams. **/
+	/** Value indicating whether the repository administrator can change access to teams. **/
 	public var repoAdminChangeTeamAccess = false;
 
 	/** The name of the organization account. **/
