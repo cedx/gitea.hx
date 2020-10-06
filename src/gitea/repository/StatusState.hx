@@ -1,6 +1,6 @@
 package gitea.repository;
 
-/** Defines the status of a commit. */
+/** Defines the status of a commit. **/
 enum abstract StatusState(String) {
 
 	/** The status is an error. **/

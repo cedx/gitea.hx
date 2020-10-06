@@ -1,5 +1,20 @@
 {
 	"defaultSeverity": "ERROR",
+	"exclude": {
+		"path": "RELATIVE_TO_SOURCE",
+		"LineLength": [
+			"gitea/organization/Organization",
+			"gitea/organization/Team",
+			"gitea/repository/Repository"
+		],
+		"MemberName": [
+			"gitea/misc/MarkdownOption",
+			"gitea/organization/Organization",
+			"gitea/organization/Team",
+			"gitea/repository/ExternalTracker",
+			"gitea/repository/StatusState"
+		]
+	},
 	"checks": [
 		{"type": "BlockBreakingConditional"},
 		{"type": "ConditionalCompilation"},
