@@ -3,7 +3,7 @@ package gitea;
 import haxe.DynamicAccess;
 
 /** An API error with a message. **/
-class ApiError {
+@:expose class ApiError {
 
 	/** A message describing the error. **/
 	public var message: String;

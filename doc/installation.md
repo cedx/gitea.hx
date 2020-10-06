@@ -72,7 +72,11 @@ You can verify if you're already good to go with the following commands:
 
 		:::php
 		<?php
+		use gitea\ApiError;
 		use gitea\misc\ServerVersion;
+		use gitea\organization\{Organization, Team};
+		use gitea\repository\{Permission, Repository};
+		use gitea\user\{User, UserHeatmapData};
 
 ## Installing from a content delivery network
 This library is also available as a ready-made JavaScript bundle.
@@ -90,7 +94,10 @@ The classes of this library are exposed as `gitea` property on the `window` glob
 
 ``` html
 <script>
-	const {misc} = window.gitea;
+	const {ApiError, misc, organization, repository, user} = window.gitea;
 	const {ServerVersion} = misc;
+	const {Organization, Team} = organization;
+	const {Permission, Repository} = repository;
+	const {User, UserHeatmapData} = user;
 </script>
 ```
