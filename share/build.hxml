@@ -2,9 +2,12 @@
 --define analyzer-optimize
 --library datetime:3.1.4
 
+gitea.ApiError
+
 gitea.hook.PayloadCommit
 gitea.hook.PayloadCommitVerification
 gitea.hook.PayloadUser
+gitea.hook.PushEvent
 
 gitea.misc.MarkdownOption
 gitea.misc.ServerVersion
