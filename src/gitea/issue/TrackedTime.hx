@@ -3,7 +3,7 @@ package gitea.issue;
 import haxe.DynamicAccess;
 
 /** TODO Represents the worked time for an issue or pull request. **/
-class TrackedTime {
+@:expose class TrackedTime {
 
 	/** The date the entry was created. **/
 	public var createdAt: Null<Date> = null;

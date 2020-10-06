@@ -50,9 +50,5 @@ import haxe.DynamicAccess;
 		if (map.exists("secret") && Std.isOfType(map["secret"], String)) model.secret = map["secret"];
 		if (map.exists("sender") && Reflect.isObject(map["sender"])) model.sender = User.fromJson(map["sender"]);
 		return model;
-
-		return new self([
-			"commits" => isset($map["commits"]) && is_array($map["commits"]) ? array_map([PayloadCommit::class, "fromJson"], $map["commits"]) : [],
-		]);
 	}
 }

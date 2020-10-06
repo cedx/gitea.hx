@@ -7,13 +7,37 @@ namespace gitea\repository;
 
 use \php\Boot;
 use \datetime\utils\DateTimeUtils;
-use \php\_Boot\HxString;
 use \gitea\user\User;
 
 /**
  * Represents a repository.
  */
 class Repository {
+	/**
+	 * @var bool
+	 * Value indicating whether to enable commit merging.
+	 */
+	public $allowMergeCommits;
+	/**
+	 * @var bool
+	 * Value indicating whether to enable rebasing to merge commits.
+	 */
+	public $allowRebase;
+	/**
+	 * @var bool
+	 * Value indicating whether to enable rebasing with explicit merge commits.
+	 */
+	public $allowRebaseExplicit;
+	/**
+	 * @var bool
+	 * Value indicating whether to enable squashing to merge commits.
+	 */
+	public $allowSquashMerge;
+	/**
+	 * @var string
+	 * The URL of the repository's avatar.
+	 */
+	public $avatarUrl;
 	/**
 	 * @var string
 	 * The HTTP-based URL for cloning this repository.
@@ -35,6 +59,16 @@ class Repository {
 	 */
 	public $description;
 	/**
+	 * @var ExternalTracker
+	 * The settings of the external tracker.
+	 */
+	public $externalTracker;
+	/**
+	 * @var ExternalWiki
+	 * The settings of the external wiki.
+	 */
+	public $externalWiki;
+	/**
 	 * @var int
 	 * The number of forks of this repository.
 	 */
@@ -45,6 +79,21 @@ class Repository {
 	 */
 	public $fullName;
 	/**
+	 * @var bool
+	 * Value indicating whether this repository has issues.
+	 */
+	public $hasIssues;
+	/**
+	 * @var bool
+	 * Value indicating whether this repository has pull requests.
+	 */
+	public $hasPullRequests;
+	/**
+	 * @var bool
+	 * Value indicating whether this repository has a wiki.
+	 */
+	public $hasWiki;
+	/**
 	 * @var string
 	 * The Gitea URL of this repository.
 	 */
@@ -54,6 +103,16 @@ class Repository {
 	 * The repository identifier.
 	 */
 	public $id;
+	/**
+	 * @var bool
+	 * Value indicating whether to ignore whitespace for conflicts.
+	 */
+	public $ignoreWhitespaceConflicts;
+	/**
+	 * @var InternalTracker
+	 * The settings of the internal tracker.
+	 */
+	public $internalTracker;
 	/**
 	 * @var bool
 	 * Value indicating whether this repository is archived.
@@ -95,6 +154,16 @@ class Repository {
 	 */
 	public $openIssuesCount;
 	/**
+	 * @var int
+	 * The number of open pull requests of this repository.
+	 */
+	public $openPullRequestsCount;
+	/**
+	 * @var string
+	 * The original URL of this repository.
+	 */
+	public $originalUrl;
+	/**
 	 * @var User
 	 * The repository owner.
 	 */
@@ -109,6 +178,11 @@ class Repository {
 	 * The repository permissions.
 	 */
 	public $permissions;
+	/**
+	 * @var int
+	 * The number of releases of this repository.
+	 */
+	public $releasesCount;
 	/**
 	 * @var int
 	 * The repository size, in kilobytes.
@@ -149,8 +223,23 @@ class Repository {
 	 */
 	public static function fromJson ($map) {
 		$model = new Repository((\Reflect::hasField($map, "id") && Boot::isOfType(\Reflect::field($map, "id"), Boot::getClass('Int')) ? \Reflect::field($map, "id") : -1));
+		if (\Reflect::hasField($map, "allow_merge_commits") && is_bool(\Reflect::field($map, "allow_merge_commits"))) {
+			$model->allowMergeCommits = \Reflect::field($map, "allow_merge_commits");
+		}
+		if (\Reflect::hasField($map, "allow_rebase") && is_bool(\Reflect::field($map, "allow_rebase"))) {
+			$model->allowRebase = \Reflect::field($map, "allow_rebase");
+		}
+		if (\Reflect::hasField($map, "allow_rebase_explicit") && is_bool(\Reflect::field($map, "allow_rebase_explicit"))) {
+			$model->allowRebaseExplicit = \Reflect::field($map, "allow_rebase_explicit");
+		}
+		if (\Reflect::hasField($map, "allow_squash_merge") && is_bool(\Reflect::field($map, "allow_squash_merge"))) {
+			$model->allowSquashMerge = \Reflect::field($map, "allow_squash_merge");
+		}
 		if (\Reflect::hasField($map, "archived") && is_bool(\Reflect::field($map, "archived"))) {
 			$model->isArchived = \Reflect::field($map, "archived");
+		}
+		if (\Reflect::hasField($map, "avatar_url") && is_string(\Reflect::field($map, "avatar_url"))) {
+			$model->avatarUrl = \Reflect::field($map, "avatar_url");
 		}
 		if (\Reflect::hasField($map, "clone_url") && is_string(\Reflect::field($map, "clone_url"))) {
 			$model->cloneUrl = \Reflect::field($map, "clone_url");
@@ -167,6 +256,12 @@ class Repository {
 		if (\Reflect::hasField($map, "empty") && is_bool(\Reflect::field($map, "empty"))) {
 			$model->isEmpty = \Reflect::field($map, "empty");
 		}
+		if (\Reflect::hasField($map, "external_tracker") && \Reflect::isObject(\Reflect::field($map, "external_tracker"))) {
+			$model->externalTracker = ExternalTracker::fromJson(\Reflect::field($map, "external_tracker"));
+		}
+		if (\Reflect::hasField($map, "external_wiki") && \Reflect::isObject(\Reflect::field($map, "external_wiki"))) {
+			$model->externalWiki = ExternalWiki::fromJson(\Reflect::field($map, "external_wiki"));
+		}
 		if (\Reflect::hasField($map, "fork") && is_bool(\Reflect::field($map, "fork"))) {
 			$model->isFork = \Reflect::field($map, "fork");
 		}
@@ -176,20 +271,38 @@ class Repository {
 		if (\Reflect::hasField($map, "full_name") && is_string(\Reflect::field($map, "full_name"))) {
 			$model->fullName = \Reflect::field($map, "full_name");
 		}
+		if (\Reflect::hasField($map, "has_issues") && is_bool(\Reflect::field($map, "has_issues"))) {
+			$model->hasIssues = \Reflect::field($map, "has_issues");
+		}
+		if (\Reflect::hasField($map, "has_pull_requests") && is_bool(\Reflect::field($map, "has_pull_requests"))) {
+			$model->hasPullRequests = \Reflect::field($map, "has_pull_requests");
+		}
+		if (\Reflect::hasField($map, "has_wiki") && is_bool(\Reflect::field($map, "has_wiki"))) {
+			$model->hasWiki = \Reflect::field($map, "has_wiki");
+		}
 		if (\Reflect::hasField($map, "html_url") && is_string(\Reflect::field($map, "html_url"))) {
 			$model->htmlUrl = \Reflect::field($map, "html_url");
 		}
+		if (\Reflect::hasField($map, "ignore_whitespace_conflicts") && is_bool(\Reflect::field($map, "ignore_whitespace_conflicts"))) {
+			$model->ignoreWhitespaceConflicts = \Reflect::field($map, "ignore_whitespace_conflicts");
+		}
+		if (\Reflect::hasField($map, "internal_tracker") && \Reflect::isObject(\Reflect::field($map, "internal_tracker"))) {
+			$model->internalTracker = InternalTracker::fromJson(\Reflect::field($map, "internal_tracker"));
+		}
 		if (\Reflect::hasField($map, "mirror") && is_bool(\Reflect::field($map, "mirror"))) {
 			$model->isMirror = \Reflect::field($map, "mirror");
-		}
-		if (\Reflect::hasField($map, "private") && is_bool(\Reflect::field($map, "private"))) {
-			$model->isPrivate = \Reflect::field($map, "private");
 		}
 		if (\Reflect::hasField($map, "name") && is_string(\Reflect::field($map, "name"))) {
 			$model->name = \Reflect::field($map, "name");
 		}
 		if (\Reflect::hasField($map, "open_issues_count") && Boot::isOfType(\Reflect::field($map, "open_issues_count"), Boot::getClass('Int'))) {
 			$model->openIssuesCount = \Reflect::field($map, "open_issues_count");
+		}
+		if (\Reflect::hasField($map, "open_pr_counter") && Boot::isOfType(\Reflect::field($map, "open_pr_counter"), Boot::getClass('Int'))) {
+			$model->openPullRequestsCount = \Reflect::field($map, "open_pr_counter");
+		}
+		if (\Reflect::hasField($map, "original_url") && is_string(\Reflect::field($map, "original_url"))) {
+			$model->originalUrl = \Reflect::field($map, "original_url");
 		}
 		if (\Reflect::hasField($map, "owner") && \Reflect::isObject(\Reflect::field($map, "owner"))) {
 			$model->owner = User::fromJson(\Reflect::field($map, "owner"));
@@ -199,6 +312,12 @@ class Repository {
 		}
 		if (\Reflect::hasField($map, "permissions") && \Reflect::isObject(\Reflect::field($map, "permissions"))) {
 			$model->permissions = Permission::fromJson(\Reflect::field($map, "permissions"));
+		}
+		if (\Reflect::hasField($map, "private") && is_bool(\Reflect::field($map, "private"))) {
+			$model->isPrivate = \Reflect::field($map, "private");
+		}
+		if (\Reflect::hasField($map, "release_counter") && Boot::isOfType(\Reflect::field($map, "release_counter"), Boot::getClass('Int'))) {
+			$model->releasesCount = \Reflect::field($map, "release_counter");
 		}
 		if (\Reflect::hasField($map, "size") && Boot::isOfType(\Reflect::field($map, "size"), Boot::getClass('Int'))) {
 			$model->size = \Reflect::field($map, "size");
@@ -238,9 +357,12 @@ class Repository {
 		$this->starsCount = 0;
 		$this->sshUrl = "";
 		$this->size = 0;
+		$this->releasesCount = 0;
 		$this->permissions = null;
 		$this->parent = null;
 		$this->owner = null;
+		$this->originalUrl = "";
+		$this->openPullRequestsCount = 0;
 		$this->openIssuesCount = 0;
 		$this->name = "";
 		$this->isTemplate = false;
@@ -249,33 +371,27 @@ class Repository {
 		$this->isFork = false;
 		$this->isEmpty = false;
 		$this->isArchived = false;
+		$this->internalTracker = null;
+		$this->ignoreWhitespaceConflicts = false;
 		$this->htmlUrl = "";
+		$this->hasWiki = false;
+		$this->hasPullRequests = false;
+		$this->hasIssues = false;
 		$this->fullName = "";
 		$this->forksCount = 0;
+		$this->externalWiki = null;
+		$this->externalTracker = null;
 		$this->description = "";
 		$this->defaultBranch = "";
 		$this->createdAt = null;
 		$this->cloneUrl = "";
+		$this->avatarUrl = "";
+		$this->allowSquashMerge = false;
+		$this->allowRebaseExplicit = false;
+		$this->allowRebase = false;
+		$this->allowMergeCommits = false;
 		$this->id = $id;
-	}
-
-	/**
-	 * Gets the repository name.
-	 * 
-	 * @return string
-	 */
-	public function get_name () {
-		if (mb_strlen($this->name) > 0) {
-			return $this->name;
-		} else if (mb_strlen($this->fullName) > 0) {
-			return (HxString::split($this->fullName, "/")->arr[1] ?? null);
-		} else {
-			return "";
-		}
 	}
 }
 
 Boot::registerClass(Repository::class, 'gitea.repository.Repository');
-Boot::registerGetters('gitea\\repository\\Repository', [
-	'name' => true
-]);
