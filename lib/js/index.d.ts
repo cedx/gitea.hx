@@ -4,8 +4,22 @@ export declare class ApiError {
 	constructor(data?: Record<string, string>);
 }
 
+export declare class CommitMeta {
+	sha: string;
+	url: string;
+	constructor(data?: Record<string, string>);
+}
+
 export declare namespace hook {
 	// TODO
+}
+
+export declare namespace issue {
+	export class StopWatch {
+		created?: Date;
+		issueIndex: number;
+		constructor(data?: Record<string, unknown>);
+	}
 }
 
 export declare namespace misc {
@@ -23,7 +37,30 @@ export declare namespace misc {
 }
 
 export declare namespace organization {
-	// TODO
+	export class Organization {
+		avatarUrl: string;
+		description: string;
+		fullName: string;
+		id: number;
+		location: string;
+		repoAdminCanChangeTeamAccess: boolean;
+		username: string;
+		visibility: string;
+		website: string;
+		constructor(data?: Record<string, unknown>);
+	}
+
+	export class Team {
+		canCreateOrgRepo: boolean;
+		description: string;
+		id: number;
+		includesAllRepositories: boolean;
+		name: string;
+		organization?: Organization;
+		permission: string;
+		units: string[];
+		constructor(data?: Record<string, unknown>);
+	}
 }
 
 export declare namespace repository {
