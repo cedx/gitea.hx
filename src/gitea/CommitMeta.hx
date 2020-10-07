@@ -2,7 +2,7 @@ package gitea;
 
 import haxe.DynamicAccess;
 
-/** Contains meta information of a commit in terms of API. **/
+/** Provides meta information of a commit. **/
 @:expose class CommitMeta {
 
 	/** The commit hash. **/
