@@ -4,11 +4,14 @@
 --library datetime:3.1.4
 
 gitea.ApiError
+gitea.CommitMeta
 
 gitea.hook.PayloadCommit
 gitea.hook.PayloadCommitVerification
 gitea.hook.PayloadUser
 gitea.hook.PushEvent
+
+gitea.issue.StopWatch
 
 gitea.misc.MarkdownOption
 gitea.misc.ServerVersion
@@ -21,7 +24,9 @@ gitea.repository.ExternalWiki
 gitea.repository.InternalTracker
 gitea.repository.Permission
 gitea.repository.Repository
+gitea.repository.RepositoryMeta
 gitea.repository.StatusState
+gitea.repository.Tag
 
 gitea.user.User
 gitea.user.UserHeatmapData
