@@ -28,33 +28,27 @@ class PayloadUser {
 	public $username;
 
 	/**
-	 * Creates a new payload user from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return PayloadUser
-	 */
-	public static function fromJson ($map) {
-		$model = (\Reflect::hasField($map, "name") ? \Reflect::field($map, "name") : "");
-		$model1 = new PayloadUser($model, (\Reflect::hasField($map, "email") ? \Reflect::field($map, "email") : ""));
-		if (\Reflect::hasField($map, "username")) {
-			$model1->username = \Reflect::field($map, "username");
-		}
-		return $model1;
-	}
-
-	/**
 	 * Creates a new payload user.
 	 * 
-	 * @param string $name
-	 * @param string $email
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($name, $email) {
+	public function __construct ($data = null) {
 		$this->username = "";
-		$this->email = $email;
-		$this->name = $name;
+		$this->name = "";
+		$this->email = "";
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "email")) {
+				$this->email = \Reflect::field($data, "email");
+			}
+			if (\Reflect::hasField($data, "name")) {
+				$this->name = \Reflect::field($data, "name");
+			}
+			if (\Reflect::hasField($data, "username")) {
+				$this->username = \Reflect::field($data, "username");
+			}
+		}
 	}
 }
 

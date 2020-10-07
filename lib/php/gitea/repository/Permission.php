@@ -28,35 +28,27 @@ class Permission {
 	public $push;
 
 	/**
-	 * Creates a new user from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return Permission
-	 */
-	public static function fromJson ($map) {
-		$model = new Permission();
-		if (\Reflect::hasField($map, "admin")) {
-			$model->admin = \Reflect::field($map, "admin");
-		}
-		if (\Reflect::hasField($map, "pull")) {
-			$model->pull = \Reflect::field($map, "pull");
-		}
-		if (\Reflect::hasField($map, "push")) {
-			$model->push = \Reflect::field($map, "push");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new set of permissions.
+	 * 
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct () {
+	public function __construct ($data = null) {
 		$this->push = false;
 		$this->pull = false;
 		$this->admin = false;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "admin")) {
+				$this->admin = \Reflect::field($data, "admin");
+			}
+			if (\Reflect::hasField($data, "pull")) {
+				$this->pull = \Reflect::field($data, "pull");
+			}
+			if (\Reflect::hasField($data, "push")) {
+				$this->push = \Reflect::field($data, "push");
+			}
+		}
 	}
 }
 

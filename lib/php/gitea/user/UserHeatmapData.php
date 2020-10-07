@@ -23,31 +23,23 @@ class UserHeatmapData {
 	public $timestamp;
 
 	/**
-	 * Creates a new heatmap data from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return UserHeatmapData
-	 */
-	public static function fromJson ($map) {
-		$tmp = (\Reflect::hasField($map, "timestamp") ? \Date::fromTime(\Reflect::field($map, "timestamp") * 1000) : \Date::now());
-		return new UserHeatmapData($tmp, (\Reflect::hasField($map, "contributions") ? \Reflect::field($map, "contributions") : 0));
-	}
-
-	/**
 	 * Creates a new heatmap data.
 	 * 
-	 * @param \Date $timestamp
-	 * @param int $contributions
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($timestamp, $contributions = 0) {
-		if ($contributions === null) {
-			$contributions = 0;
+	public function __construct ($data = null) {
+		$this->timestamp = \Date::now();
+		$this->contributions = 0;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "contributions")) {
+				$this->contributions = \Reflect::field($data, "contributions");
+			}
+			if (\Reflect::hasField($data, "timestamp")) {
+				$this->timestamp = \Date::fromTime(\Reflect::field($data, "timestamp") * 1000);
+			}
 		}
-		$this->contributions = $contributions;
-		$this->timestamp = $timestamp;
 	}
 }
 

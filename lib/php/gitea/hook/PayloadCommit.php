@@ -64,64 +64,55 @@ class PayloadCommit {
 	public $verification;
 
 	/**
-	 * Creates a new payload commit from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return PayloadCommit
-	 */
-	public static function fromJson ($map) {
-		$model = (\Reflect::hasField($map, "id") && is_string(\Reflect::field($map, "id")) ? \Reflect::field($map, "id") : "");
-		$model1 = new PayloadCommit($model, (\Reflect::hasField($map, "message") && is_string(\Reflect::field($map, "message")) ? \Reflect::field($map, "message") : ""));
-		if (\Reflect::hasField($map, "added") && (\Reflect::field($map, "added") instanceof \Array_hx)) {
-			$model1->added = \Reflect::field($map, "added");
-		}
-		if (\Reflect::hasField($map, "author") && \Reflect::isObject(\Reflect::field($map, "author"))) {
-			$model1->author = PayloadUser::fromJson(\Reflect::field($map, "author"));
-		}
-		if (\Reflect::hasField($map, "committer") && \Reflect::isObject(\Reflect::field($map, "committer"))) {
-			$model1->committer = PayloadUser::fromJson(\Reflect::field($map, "committer"));
-		}
-		if (\Reflect::hasField($map, "modified") && (\Reflect::field($map, "modified") instanceof \Array_hx)) {
-			$model1->modified = \Reflect::field($map, "modified");
-		}
-		if (\Reflect::hasField($map, "removed") && (\Reflect::field($map, "removed") instanceof \Array_hx)) {
-			$model1->removed = \Reflect::field($map, "removed");
-		}
-		if (\Reflect::hasField($map, "timestamp") && is_string(\Reflect::field($map, "timestamp"))) {
-			$model1->timestamp = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($map, "timestamp")) - 62135596800.0) * 1000);
-		}
-		if (\Reflect::hasField($map, "url") && is_string(\Reflect::field($map, "url"))) {
-			$model1->url = \Reflect::field($map, "url");
-		}
-		if (\Reflect::hasField($map, "verification") && \Reflect::isObject(\Reflect::field($map, "verification"))) {
-			$model1->verification = PayloadCommitVerification::fromJson(\Reflect::field($map, "verification"));
-		}
-		return $model1;
-	}
-
-	/**
 	 * Creates a new payload commit.
 	 * 
-	 * @param string $id
-	 * @param string $message
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($id, $message = "") {
-		if ($message === null) {
-			$message = "";
-		}
+	public function __construct ($data = null) {
 		$this->verification = null;
 		$this->url = "";
 		$this->timestamp = null;
 		$this->removed = new \Array_hx();
 		$this->modified = new \Array_hx();
+		$this->message = "";
+		$this->id = "";
 		$this->committer = null;
 		$this->author = null;
 		$this->added = new \Array_hx();
-		$this->id = $id;
-		$this->message = $message;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "added") && (\Reflect::field($data, "added") instanceof \Array_hx)) {
+				$this->added = \Reflect::field($data, "added");
+			}
+			if (\Reflect::hasField($data, "author") && \Reflect::isObject(\Reflect::field($data, "author"))) {
+				$this->author = new PayloadUser(\Reflect::field($data, "author"));
+			}
+			if (\Reflect::hasField($data, "committer") && \Reflect::isObject(\Reflect::field($data, "committer"))) {
+				$this->committer = new PayloadUser(\Reflect::field($data, "committer"));
+			}
+			if (\Reflect::hasField($data, "id") && is_string(\Reflect::field($data, "id"))) {
+				$this->id = \Reflect::field($data, "id");
+			}
+			if (\Reflect::hasField($data, "message") && is_string(\Reflect::field($data, "message"))) {
+				$this->message = \Reflect::field($data, "message");
+			}
+			if (\Reflect::hasField($data, "modified") && (\Reflect::field($data, "modified") instanceof \Array_hx)) {
+				$this->modified = \Reflect::field($data, "modified");
+			}
+			if (\Reflect::hasField($data, "removed") && (\Reflect::field($data, "removed") instanceof \Array_hx)) {
+				$this->removed = \Reflect::field($data, "removed");
+			}
+			if (\Reflect::hasField($data, "timestamp") && is_string(\Reflect::field($data, "timestamp"))) {
+				$this->timestamp = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "timestamp")) - 62135596800.0) * 1000);
+			}
+			if (\Reflect::hasField($data, "url") && is_string(\Reflect::field($data, "url"))) {
+				$this->url = \Reflect::field($data, "url");
+			}
+			if (\Reflect::hasField($data, "verification") && \Reflect::isObject(\Reflect::field($data, "verification"))) {
+				$this->verification = new PayloadCommitVerification(\Reflect::field($data, "verification"));
+			}
+		}
 	}
 }
 

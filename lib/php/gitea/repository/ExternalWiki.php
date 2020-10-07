@@ -18,25 +18,19 @@ class ExternalWiki {
 	public $url;
 
 	/**
-	 * Creates a new external wiki from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return ExternalWiki
-	 */
-	public static function fromJson ($map) {
-		return new ExternalWiki((\Reflect::hasField($map, "external_wiki_url") ? \Reflect::field($map, "external_wiki_url") : ""));
-	}
-
-	/**
 	 * Creates a new external wiki.
 	 * 
-	 * @param string $url
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($url) {
-		$this->url = $url;
+	public function __construct ($data = null) {
+		$this->url = "";
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "external_wiki_url")) {
+				$this->url = \Reflect::field($data, "external_wiki_url");
+			}
+		}
 	}
 }
 

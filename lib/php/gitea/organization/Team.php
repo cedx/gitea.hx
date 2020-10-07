@@ -53,54 +53,47 @@ class Team {
 	public $units;
 
 	/**
-	 * Creates a new team from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return Team
-	 */
-	public static function fromJson ($map) {
-		$model = new Team((\Reflect::hasField($map, "id") && Boot::isOfType(\Reflect::field($map, "id"), Boot::getClass('Int')) ? \Reflect::field($map, "id") : -1));
-		if (\Reflect::hasField($map, "can_create_org_repo") && is_bool(\Reflect::field($map, "can_create_org_repo"))) {
-			$model->canCreateOrgRepo = \Reflect::field($map, "can_create_org_repo");
-		}
-		if (\Reflect::hasField($map, "description") && is_string(\Reflect::field($map, "description"))) {
-			$model->description = \Reflect::field($map, "description");
-		}
-		if (\Reflect::hasField($map, "includes_all_repositories") && is_bool(\Reflect::field($map, "includes_all_repositories"))) {
-			$model->includesAllRepositories = \Reflect::field($map, "includes_all_repositories");
-		}
-		if (\Reflect::hasField($map, "name") && is_string(\Reflect::field($map, "name"))) {
-			$model->name = \Reflect::field($map, "name");
-		}
-		if (\Reflect::hasField($map, "organization") && \Reflect::isObject(\Reflect::field($map, "organization"))) {
-			$model->organization = Organization::fromJson(\Reflect::field($map, "organization"));
-		}
-		if (\Reflect::hasField($map, "permission") && is_string(\Reflect::field($map, "permission"))) {
-			$model->permission = \Reflect::field($map, "permission");
-		}
-		if (\Reflect::hasField($map, "units") && (\Reflect::field($map, "units") instanceof \Array_hx)) {
-			$model->units = \Reflect::field($map, "units");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new team.
 	 * 
-	 * @param int $id
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($id) {
+	public function __construct ($data = null) {
 		$this->units = new \Array_hx();
 		$this->permission = "none";
 		$this->organization = null;
 		$this->name = "";
 		$this->includesAllRepositories = false;
+		$this->id = -1;
 		$this->description = "";
 		$this->canCreateOrgRepo = false;
-		$this->id = $id;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "can_create_org_repo") && is_bool(\Reflect::field($data, "can_create_org_repo"))) {
+				$this->canCreateOrgRepo = \Reflect::field($data, "can_create_org_repo");
+			}
+			if (\Reflect::hasField($data, "description") && is_string(\Reflect::field($data, "description"))) {
+				$this->description = \Reflect::field($data, "description");
+			}
+			if (\Reflect::hasField($data, "id") && Boot::isOfType(\Reflect::field($data, "id"), Boot::getClass('Int'))) {
+				$this->id = \Reflect::field($data, "id");
+			}
+			if (\Reflect::hasField($data, "includes_all_repositories") && is_bool(\Reflect::field($data, "includes_all_repositories"))) {
+				$this->includesAllRepositories = \Reflect::field($data, "includes_all_repositories");
+			}
+			if (\Reflect::hasField($data, "name") && is_string(\Reflect::field($data, "name"))) {
+				$this->name = \Reflect::field($data, "name");
+			}
+			if (\Reflect::hasField($data, "organization") && \Reflect::isObject(\Reflect::field($data, "organization"))) {
+				$this->organization = new Organization(\Reflect::field($data, "organization"));
+			}
+			if (\Reflect::hasField($data, "permission") && is_string(\Reflect::field($data, "permission"))) {
+				$this->permission = \Reflect::field($data, "permission");
+			}
+			if (\Reflect::hasField($data, "units") && (\Reflect::field($data, "units") instanceof \Array_hx)) {
+				$this->units = \Reflect::field($data, "units");
+			}
+		}
 	}
 }
 

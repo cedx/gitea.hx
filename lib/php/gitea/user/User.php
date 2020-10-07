@@ -59,58 +59,51 @@ class User {
 	public $login;
 
 	/**
-	 * Creates a new user from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return User
-	 */
-	public static function fromJson ($map) {
-		$model = new User((\Reflect::hasField($map, "id") && Boot::isOfType(\Reflect::field($map, "id"), Boot::getClass('Int')) ? \Reflect::field($map, "id") : -1));
-		if (\Reflect::hasField($map, "avatar_url") && is_string(\Reflect::field($map, "avatar_url"))) {
-			$model->avatarUrl = \Reflect::field($map, "avatar_url");
-		}
-		if (\Reflect::hasField($map, "created") && is_string(\Reflect::field($map, "created"))) {
-			$model->created = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($map, "created")) - 62135596800.0) * 1000);
-		}
-		if (\Reflect::hasField($map, "email") && is_string(\Reflect::field($map, "email"))) {
-			$model->email = \Reflect::field($map, "email");
-		}
-		if (\Reflect::hasField($map, "full_name") && is_string(\Reflect::field($map, "full_name"))) {
-			$model->fullName = \Reflect::field($map, "full_name");
-		}
-		if (\Reflect::hasField($map, "is_admin") && is_bool(\Reflect::field($map, "is_admin"))) {
-			$model->isAdmin = \Reflect::field($map, "is_admin");
-		}
-		if (\Reflect::hasField($map, "language") && is_string(\Reflect::field($map, "language"))) {
-			$model->language = \Reflect::field($map, "language");
-		}
-		if (\Reflect::hasField($map, "last_login") && is_string(\Reflect::field($map, "last_login"))) {
-			$model->lastLogin = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($map, "last_login")) - 62135596800.0) * 1000);
-		}
-		if (\Reflect::hasField($map, "login") && is_string(\Reflect::field($map, "login"))) {
-			$model->login = \Reflect::field($map, "login");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new user.
 	 * 
-	 * @param int $id
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($id) {
+	public function __construct ($data = null) {
 		$this->login = "";
 		$this->lastLogin = null;
 		$this->language = "";
 		$this->isAdmin = false;
+		$this->id = -1;
 		$this->fullName = "";
 		$this->email = "";
 		$this->created = null;
 		$this->avatarUrl = "";
-		$this->id = $id;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "avatar_url") && is_string(\Reflect::field($data, "avatar_url"))) {
+				$this->avatarUrl = \Reflect::field($data, "avatar_url");
+			}
+			if (\Reflect::hasField($data, "created") && is_string(\Reflect::field($data, "created"))) {
+				$this->created = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "created")) - 62135596800.0) * 1000);
+			}
+			if (\Reflect::hasField($data, "email") && is_string(\Reflect::field($data, "email"))) {
+				$this->email = \Reflect::field($data, "email");
+			}
+			if (\Reflect::hasField($data, "full_name") && is_string(\Reflect::field($data, "full_name"))) {
+				$this->fullName = \Reflect::field($data, "full_name");
+			}
+			if (\Reflect::hasField($data, "id") && Boot::isOfType(\Reflect::field($data, "id"), Boot::getClass('Int'))) {
+				$this->id = \Reflect::field($data, "id");
+			}
+			if (\Reflect::hasField($data, "is_admin") && is_bool(\Reflect::field($data, "is_admin"))) {
+				$this->isAdmin = \Reflect::field($data, "is_admin");
+			}
+			if (\Reflect::hasField($data, "language") && is_string(\Reflect::field($data, "language"))) {
+				$this->language = \Reflect::field($data, "language");
+			}
+			if (\Reflect::hasField($data, "last_login") && is_string(\Reflect::field($data, "last_login"))) {
+				$this->lastLogin = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "last_login")) - 62135596800.0) * 1000);
+			}
+			if (\Reflect::hasField($data, "login") && is_string(\Reflect::field($data, "login"))) {
+				$this->login = \Reflect::field($data, "login");
+			}
+		}
 	}
 }
 

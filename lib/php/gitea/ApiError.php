@@ -23,28 +23,23 @@ class ApiError {
 	public $url;
 
 	/**
-	 * Creates a new heatmap data from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return ApiError
-	 */
-	public static function fromJson ($map) {
-		$tmp = (\Reflect::hasField($map, "message") ? \Reflect::field($map, "message") : "");
-		return new ApiError($tmp, (\Reflect::hasField($map, "url") ? \Reflect::field($map, "url") : ""));
-	}
-
-	/**
 	 * Creates a new API error.
 	 * 
-	 * @param string $message
-	 * @param string $url
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($message, $url) {
-		$this->message = $message;
-		$this->url = $url;
+	public function __construct ($data = null) {
+		$this->url = "";
+		$this->message = "";
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "message")) {
+				$this->message = \Reflect::field($data, "message");
+			}
+			if (\Reflect::hasField($data, "url")) {
+				$this->url = \Reflect::field($data, "url");
+			}
+		}
 	}
 }
 

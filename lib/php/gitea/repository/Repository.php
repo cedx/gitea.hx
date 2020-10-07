@@ -215,142 +215,13 @@ class Repository {
 	public $website;
 
 	/**
-	 * Creates a new repository from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return Repository
-	 */
-	public static function fromJson ($map) {
-		$model = new Repository((\Reflect::hasField($map, "id") && Boot::isOfType(\Reflect::field($map, "id"), Boot::getClass('Int')) ? \Reflect::field($map, "id") : -1));
-		if (\Reflect::hasField($map, "allow_merge_commits") && is_bool(\Reflect::field($map, "allow_merge_commits"))) {
-			$model->allowMergeCommits = \Reflect::field($map, "allow_merge_commits");
-		}
-		if (\Reflect::hasField($map, "allow_rebase") && is_bool(\Reflect::field($map, "allow_rebase"))) {
-			$model->allowRebase = \Reflect::field($map, "allow_rebase");
-		}
-		if (\Reflect::hasField($map, "allow_rebase_explicit") && is_bool(\Reflect::field($map, "allow_rebase_explicit"))) {
-			$model->allowRebaseExplicit = \Reflect::field($map, "allow_rebase_explicit");
-		}
-		if (\Reflect::hasField($map, "allow_squash_merge") && is_bool(\Reflect::field($map, "allow_squash_merge"))) {
-			$model->allowSquashMerge = \Reflect::field($map, "allow_squash_merge");
-		}
-		if (\Reflect::hasField($map, "archived") && is_bool(\Reflect::field($map, "archived"))) {
-			$model->isArchived = \Reflect::field($map, "archived");
-		}
-		if (\Reflect::hasField($map, "avatar_url") && is_string(\Reflect::field($map, "avatar_url"))) {
-			$model->avatarUrl = \Reflect::field($map, "avatar_url");
-		}
-		if (\Reflect::hasField($map, "clone_url") && is_string(\Reflect::field($map, "clone_url"))) {
-			$model->cloneUrl = \Reflect::field($map, "clone_url");
-		}
-		if (\Reflect::hasField($map, "created_at") && is_string(\Reflect::field($map, "created_at"))) {
-			$model->createdAt = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($map, "created_at")) - 62135596800.0) * 1000);
-		}
-		if (\Reflect::hasField($map, "default_branch") && is_string(\Reflect::field($map, "default_branch"))) {
-			$model->defaultBranch = \Reflect::field($map, "default_branch");
-		}
-		if (\Reflect::hasField($map, "description") && is_string(\Reflect::field($map, "description"))) {
-			$model->description = \Reflect::field($map, "description");
-		}
-		if (\Reflect::hasField($map, "empty") && is_bool(\Reflect::field($map, "empty"))) {
-			$model->isEmpty = \Reflect::field($map, "empty");
-		}
-		if (\Reflect::hasField($map, "external_tracker") && \Reflect::isObject(\Reflect::field($map, "external_tracker"))) {
-			$model->externalTracker = ExternalTracker::fromJson(\Reflect::field($map, "external_tracker"));
-		}
-		if (\Reflect::hasField($map, "external_wiki") && \Reflect::isObject(\Reflect::field($map, "external_wiki"))) {
-			$model->externalWiki = ExternalWiki::fromJson(\Reflect::field($map, "external_wiki"));
-		}
-		if (\Reflect::hasField($map, "fork") && is_bool(\Reflect::field($map, "fork"))) {
-			$model->isFork = \Reflect::field($map, "fork");
-		}
-		if (\Reflect::hasField($map, "forks_count") && Boot::isOfType(\Reflect::field($map, "forks_count"), Boot::getClass('Int'))) {
-			$model->forksCount = \Reflect::field($map, "forks_count");
-		}
-		if (\Reflect::hasField($map, "full_name") && is_string(\Reflect::field($map, "full_name"))) {
-			$model->fullName = \Reflect::field($map, "full_name");
-		}
-		if (\Reflect::hasField($map, "has_issues") && is_bool(\Reflect::field($map, "has_issues"))) {
-			$model->hasIssues = \Reflect::field($map, "has_issues");
-		}
-		if (\Reflect::hasField($map, "has_pull_requests") && is_bool(\Reflect::field($map, "has_pull_requests"))) {
-			$model->hasPullRequests = \Reflect::field($map, "has_pull_requests");
-		}
-		if (\Reflect::hasField($map, "has_wiki") && is_bool(\Reflect::field($map, "has_wiki"))) {
-			$model->hasWiki = \Reflect::field($map, "has_wiki");
-		}
-		if (\Reflect::hasField($map, "html_url") && is_string(\Reflect::field($map, "html_url"))) {
-			$model->htmlUrl = \Reflect::field($map, "html_url");
-		}
-		if (\Reflect::hasField($map, "ignore_whitespace_conflicts") && is_bool(\Reflect::field($map, "ignore_whitespace_conflicts"))) {
-			$model->ignoreWhitespaceConflicts = \Reflect::field($map, "ignore_whitespace_conflicts");
-		}
-		if (\Reflect::hasField($map, "internal_tracker") && \Reflect::isObject(\Reflect::field($map, "internal_tracker"))) {
-			$model->internalTracker = InternalTracker::fromJson(\Reflect::field($map, "internal_tracker"));
-		}
-		if (\Reflect::hasField($map, "mirror") && is_bool(\Reflect::field($map, "mirror"))) {
-			$model->isMirror = \Reflect::field($map, "mirror");
-		}
-		if (\Reflect::hasField($map, "name") && is_string(\Reflect::field($map, "name"))) {
-			$model->name = \Reflect::field($map, "name");
-		}
-		if (\Reflect::hasField($map, "open_issues_count") && Boot::isOfType(\Reflect::field($map, "open_issues_count"), Boot::getClass('Int'))) {
-			$model->openIssuesCount = \Reflect::field($map, "open_issues_count");
-		}
-		if (\Reflect::hasField($map, "open_pr_counter") && Boot::isOfType(\Reflect::field($map, "open_pr_counter"), Boot::getClass('Int'))) {
-			$model->openPullRequestsCount = \Reflect::field($map, "open_pr_counter");
-		}
-		if (\Reflect::hasField($map, "original_url") && is_string(\Reflect::field($map, "original_url"))) {
-			$model->originalUrl = \Reflect::field($map, "original_url");
-		}
-		if (\Reflect::hasField($map, "owner") && \Reflect::isObject(\Reflect::field($map, "owner"))) {
-			$model->owner = User::fromJson(\Reflect::field($map, "owner"));
-		}
-		if (\Reflect::hasField($map, "parent") && \Reflect::isObject(\Reflect::field($map, "parent"))) {
-			$model->parent = Repository::fromJson(\Reflect::field($map, "parent"));
-		}
-		if (\Reflect::hasField($map, "permissions") && \Reflect::isObject(\Reflect::field($map, "permissions"))) {
-			$model->permissions = Permission::fromJson(\Reflect::field($map, "permissions"));
-		}
-		if (\Reflect::hasField($map, "private") && is_bool(\Reflect::field($map, "private"))) {
-			$model->isPrivate = \Reflect::field($map, "private");
-		}
-		if (\Reflect::hasField($map, "release_counter") && Boot::isOfType(\Reflect::field($map, "release_counter"), Boot::getClass('Int'))) {
-			$model->releasesCount = \Reflect::field($map, "release_counter");
-		}
-		if (\Reflect::hasField($map, "size") && Boot::isOfType(\Reflect::field($map, "size"), Boot::getClass('Int'))) {
-			$model->size = \Reflect::field($map, "size");
-		}
-		if (\Reflect::hasField($map, "ssh_url") && is_string(\Reflect::field($map, "ssh_url"))) {
-			$model->sshUrl = \Reflect::field($map, "ssh_url");
-		}
-		if (\Reflect::hasField($map, "stars_count") && Boot::isOfType(\Reflect::field($map, "stars_count"), Boot::getClass('Int'))) {
-			$model->starsCount = \Reflect::field($map, "stars_count");
-		}
-		if (\Reflect::hasField($map, "template") && is_bool(\Reflect::field($map, "template"))) {
-			$model->isTemplate = \Reflect::field($map, "template");
-		}
-		if (\Reflect::hasField($map, "updated_at") && is_string(\Reflect::field($map, "updated_at"))) {
-			$model->updatedAt = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($map, "updated_at")) - 62135596800.0) * 1000);
-		}
-		if (\Reflect::hasField($map, "watchers_count") && Boot::isOfType(\Reflect::field($map, "watchers_count"), Boot::getClass('Int'))) {
-			$model->watchersCount = \Reflect::field($map, "watchers_count");
-		}
-		if (\Reflect::hasField($map, "website") && is_string(\Reflect::field($map, "website"))) {
-			$model->website = \Reflect::field($map, "website");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new repository.
 	 * 
-	 * @param int $id
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($id) {
+	public function __construct ($data = null) {
 		$this->website = "";
 		$this->watchersCount = 0;
 		$this->updatedAt = null;
@@ -373,6 +244,7 @@ class Repository {
 		$this->isArchived = false;
 		$this->internalTracker = null;
 		$this->ignoreWhitespaceConflicts = false;
+		$this->id = -1;
 		$this->htmlUrl = "";
 		$this->hasWiki = false;
 		$this->hasPullRequests = false;
@@ -390,7 +262,128 @@ class Repository {
 		$this->allowRebaseExplicit = false;
 		$this->allowRebase = false;
 		$this->allowMergeCommits = false;
-		$this->id = $id;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "allow_merge_commits") && is_bool(\Reflect::field($data, "allow_merge_commits"))) {
+				$this->allowMergeCommits = \Reflect::field($data, "allow_merge_commits");
+			}
+			if (\Reflect::hasField($data, "allow_rebase") && is_bool(\Reflect::field($data, "allow_rebase"))) {
+				$this->allowRebase = \Reflect::field($data, "allow_rebase");
+			}
+			if (\Reflect::hasField($data, "allow_rebase_explicit") && is_bool(\Reflect::field($data, "allow_rebase_explicit"))) {
+				$this->allowRebaseExplicit = \Reflect::field($data, "allow_rebase_explicit");
+			}
+			if (\Reflect::hasField($data, "allow_squash_merge") && is_bool(\Reflect::field($data, "allow_squash_merge"))) {
+				$this->allowSquashMerge = \Reflect::field($data, "allow_squash_merge");
+			}
+			if (\Reflect::hasField($data, "archived") && is_bool(\Reflect::field($data, "archived"))) {
+				$this->isArchived = \Reflect::field($data, "archived");
+			}
+			if (\Reflect::hasField($data, "avatar_url") && is_string(\Reflect::field($data, "avatar_url"))) {
+				$this->avatarUrl = \Reflect::field($data, "avatar_url");
+			}
+			if (\Reflect::hasField($data, "clone_url") && is_string(\Reflect::field($data, "clone_url"))) {
+				$this->cloneUrl = \Reflect::field($data, "clone_url");
+			}
+			if (\Reflect::hasField($data, "created_at") && is_string(\Reflect::field($data, "created_at"))) {
+				$this->createdAt = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "created_at")) - 62135596800.0) * 1000);
+			}
+			if (\Reflect::hasField($data, "default_branch") && is_string(\Reflect::field($data, "default_branch"))) {
+				$this->defaultBranch = \Reflect::field($data, "default_branch");
+			}
+			if (\Reflect::hasField($data, "description") && is_string(\Reflect::field($data, "description"))) {
+				$this->description = \Reflect::field($data, "description");
+			}
+			if (\Reflect::hasField($data, "empty") && is_bool(\Reflect::field($data, "empty"))) {
+				$this->isEmpty = \Reflect::field($data, "empty");
+			}
+			if (\Reflect::hasField($data, "external_tracker") && \Reflect::isObject(\Reflect::field($data, "external_tracker"))) {
+				$this->externalTracker = new ExternalTracker(\Reflect::field($data, "external_tracker"));
+			}
+			if (\Reflect::hasField($data, "external_wiki") && \Reflect::isObject(\Reflect::field($data, "external_wiki"))) {
+				$this->externalWiki = new ExternalWiki(\Reflect::field($data, "external_wiki"));
+			}
+			if (\Reflect::hasField($data, "fork") && is_bool(\Reflect::field($data, "fork"))) {
+				$this->isFork = \Reflect::field($data, "fork");
+			}
+			if (\Reflect::hasField($data, "forks_count") && Boot::isOfType(\Reflect::field($data, "forks_count"), Boot::getClass('Int'))) {
+				$this->forksCount = \Reflect::field($data, "forks_count");
+			}
+			if (\Reflect::hasField($data, "full_name") && is_string(\Reflect::field($data, "full_name"))) {
+				$this->fullName = \Reflect::field($data, "full_name");
+			}
+			if (\Reflect::hasField($data, "has_issues") && is_bool(\Reflect::field($data, "has_issues"))) {
+				$this->hasIssues = \Reflect::field($data, "has_issues");
+			}
+			if (\Reflect::hasField($data, "has_pull_requests") && is_bool(\Reflect::field($data, "has_pull_requests"))) {
+				$this->hasPullRequests = \Reflect::field($data, "has_pull_requests");
+			}
+			if (\Reflect::hasField($data, "has_wiki") && is_bool(\Reflect::field($data, "has_wiki"))) {
+				$this->hasWiki = \Reflect::field($data, "has_wiki");
+			}
+			if (\Reflect::hasField($data, "html_url") && is_string(\Reflect::field($data, "html_url"))) {
+				$this->htmlUrl = \Reflect::field($data, "html_url");
+			}
+			if (\Reflect::hasField($data, "id") && Boot::isOfType(\Reflect::field($data, "id"), Boot::getClass('Int'))) {
+				$this->id = \Reflect::field($data, "id");
+			}
+			if (\Reflect::hasField($data, "ignore_whitespace_conflicts") && is_bool(\Reflect::field($data, "ignore_whitespace_conflicts"))) {
+				$this->ignoreWhitespaceConflicts = \Reflect::field($data, "ignore_whitespace_conflicts");
+			}
+			if (\Reflect::hasField($data, "internal_tracker") && \Reflect::isObject(\Reflect::field($data, "internal_tracker"))) {
+				$this->internalTracker = new InternalTracker(\Reflect::field($data, "internal_tracker"));
+			}
+			if (\Reflect::hasField($data, "mirror") && is_bool(\Reflect::field($data, "mirror"))) {
+				$this->isMirror = \Reflect::field($data, "mirror");
+			}
+			if (\Reflect::hasField($data, "name") && is_string(\Reflect::field($data, "name"))) {
+				$this->name = \Reflect::field($data, "name");
+			}
+			if (\Reflect::hasField($data, "open_issues_count") && Boot::isOfType(\Reflect::field($data, "open_issues_count"), Boot::getClass('Int'))) {
+				$this->openIssuesCount = \Reflect::field($data, "open_issues_count");
+			}
+			if (\Reflect::hasField($data, "open_pr_counter") && Boot::isOfType(\Reflect::field($data, "open_pr_counter"), Boot::getClass('Int'))) {
+				$this->openPullRequestsCount = \Reflect::field($data, "open_pr_counter");
+			}
+			if (\Reflect::hasField($data, "original_url") && is_string(\Reflect::field($data, "original_url"))) {
+				$this->originalUrl = \Reflect::field($data, "original_url");
+			}
+			if (\Reflect::hasField($data, "owner") && \Reflect::isObject(\Reflect::field($data, "owner"))) {
+				$this->owner = new User(\Reflect::field($data, "owner"));
+			}
+			if (\Reflect::hasField($data, "parent") && \Reflect::isObject(\Reflect::field($data, "parent"))) {
+				$this->parent = new Repository(\Reflect::field($data, "parent"));
+			}
+			if (\Reflect::hasField($data, "permissions") && \Reflect::isObject(\Reflect::field($data, "permissions"))) {
+				$this->permissions = new Permission(\Reflect::field($data, "permissions"));
+			}
+			if (\Reflect::hasField($data, "private") && is_bool(\Reflect::field($data, "private"))) {
+				$this->isPrivate = \Reflect::field($data, "private");
+			}
+			if (\Reflect::hasField($data, "release_counter") && Boot::isOfType(\Reflect::field($data, "release_counter"), Boot::getClass('Int'))) {
+				$this->releasesCount = \Reflect::field($data, "release_counter");
+			}
+			if (\Reflect::hasField($data, "size") && Boot::isOfType(\Reflect::field($data, "size"), Boot::getClass('Int'))) {
+				$this->size = \Reflect::field($data, "size");
+			}
+			if (\Reflect::hasField($data, "ssh_url") && is_string(\Reflect::field($data, "ssh_url"))) {
+				$this->sshUrl = \Reflect::field($data, "ssh_url");
+			}
+			if (\Reflect::hasField($data, "stars_count") && Boot::isOfType(\Reflect::field($data, "stars_count"), Boot::getClass('Int'))) {
+				$this->starsCount = \Reflect::field($data, "stars_count");
+			}
+			if (\Reflect::hasField($data, "template") && is_bool(\Reflect::field($data, "template"))) {
+				$this->isTemplate = \Reflect::field($data, "template");
+			}
+			if (\Reflect::hasField($data, "updated_at") && is_string(\Reflect::field($data, "updated_at"))) {
+				$this->updatedAt = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "updated_at")) - 62135596800.0) * 1000);
+			}
+			if (\Reflect::hasField($data, "watchers_count") && Boot::isOfType(\Reflect::field($data, "watchers_count"), Boot::getClass('Int'))) {
+				$this->watchersCount = \Reflect::field($data, "watchers_count");
+			}
+			if (\Reflect::hasField($data, "website") && is_string(\Reflect::field($data, "website"))) {
+				$this->website = \Reflect::field($data, "website");
+			}
+		}
 	}
 }
 

@@ -58,58 +58,51 @@ class Organization {
 	public $website;
 
 	/**
-	 * Creates a new organization from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return Organization
-	 */
-	public static function fromJson ($map) {
-		$model = new Organization((\Reflect::hasField($map, "id") && Boot::isOfType(\Reflect::field($map, "id"), Boot::getClass('Int')) ? \Reflect::field($map, "id") : -1));
-		if (\Reflect::hasField($map, "avatar_url") && is_string(\Reflect::field($map, "avatar_url"))) {
-			$model->avatarUrl = \Reflect::field($map, "avatar_url");
-		}
-		if (\Reflect::hasField($map, "description") && is_string(\Reflect::field($map, "description"))) {
-			$model->description = \Reflect::field($map, "description");
-		}
-		if (\Reflect::hasField($map, "full_name") && is_string(\Reflect::field($map, "full_name"))) {
-			$model->fullName = \Reflect::field($map, "full_name");
-		}
-		if (\Reflect::hasField($map, "location") && is_string(\Reflect::field($map, "location"))) {
-			$model->location = \Reflect::field($map, "location");
-		}
-		if (\Reflect::hasField($map, "repo_admin_change_team_access") && is_bool(\Reflect::field($map, "repo_admin_change_team_access"))) {
-			$model->repoAdminCanChangeTeamAccess = \Reflect::field($map, "repo_admin_change_team_access");
-		}
-		if (\Reflect::hasField($map, "username") && is_string(\Reflect::field($map, "username"))) {
-			$model->username = \Reflect::field($map, "username");
-		}
-		if (\Reflect::hasField($map, "visibility") && is_string(\Reflect::field($map, "visibility"))) {
-			$model->visibility = \Reflect::field($map, "visibility");
-		}
-		if (\Reflect::hasField($map, "website") && is_string(\Reflect::field($map, "website"))) {
-			$model->website = \Reflect::field($map, "website");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new organization.
 	 * 
-	 * @param int $id
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($id) {
+	public function __construct ($data = null) {
 		$this->website = "";
 		$this->visibility = "private";
 		$this->username = "";
 		$this->repoAdminCanChangeTeamAccess = false;
 		$this->location = "";
+		$this->id = -1;
 		$this->fullName = "";
 		$this->description = "";
 		$this->avatarUrl = "";
-		$this->id = $id;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "avatar_url") && is_string(\Reflect::field($data, "avatar_url"))) {
+				$this->avatarUrl = \Reflect::field($data, "avatar_url");
+			}
+			if (\Reflect::hasField($data, "description") && is_string(\Reflect::field($data, "description"))) {
+				$this->description = \Reflect::field($data, "description");
+			}
+			if (\Reflect::hasField($data, "full_name") && is_string(\Reflect::field($data, "full_name"))) {
+				$this->fullName = \Reflect::field($data, "full_name");
+			}
+			if (\Reflect::hasField($data, "id") && Boot::isOfType(\Reflect::field($data, "id"), Boot::getClass('Int'))) {
+				$this->id = \Reflect::field($data, "id");
+			}
+			if (\Reflect::hasField($data, "location") && is_string(\Reflect::field($data, "location"))) {
+				$this->location = \Reflect::field($data, "location");
+			}
+			if (\Reflect::hasField($data, "repo_admin_change_team_access") && is_bool(\Reflect::field($data, "repo_admin_change_team_access"))) {
+				$this->repoAdminCanChangeTeamAccess = \Reflect::field($data, "repo_admin_change_team_access");
+			}
+			if (\Reflect::hasField($data, "username") && is_string(\Reflect::field($data, "username"))) {
+				$this->username = \Reflect::field($data, "username");
+			}
+			if (\Reflect::hasField($data, "visibility") && is_string(\Reflect::field($data, "visibility"))) {
+				$this->visibility = \Reflect::field($data, "visibility");
+			}
+			if (\Reflect::hasField($data, "website") && is_string(\Reflect::field($data, "website"))) {
+				$this->website = \Reflect::field($data, "website");
+			}
+		}
 	}
 }
 

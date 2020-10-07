@@ -28,35 +28,27 @@ class InternalTracker {
 	public $enableTimeTracker;
 
 	/**
-	 * Creates a new internal tracker from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return InternalTracker
-	 */
-	public static function fromJson ($map) {
-		$model = new InternalTracker();
-		if (\Reflect::hasField($map, "allow_only_contributors_to_track_time")) {
-			$model->allowOnlyContributorsToTrackTime = \Reflect::field($map, "allow_only_contributors_to_track_time");
-		}
-		if (\Reflect::hasField($map, "enable_issue_dependencies")) {
-			$model->enableIssueDependencies = \Reflect::field($map, "enable_issue_dependencies");
-		}
-		if (\Reflect::hasField($map, "enable_time_tracker")) {
-			$model->enableTimeTracker = \Reflect::field($map, "enable_time_tracker");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new internal tracker.
+	 * 
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct () {
+	public function __construct ($data = null) {
 		$this->enableTimeTracker = false;
 		$this->enableIssueDependencies = false;
 		$this->allowOnlyContributorsToTrackTime = false;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "allow_only_contributors_to_track_time")) {
+				$this->allowOnlyContributorsToTrackTime = \Reflect::field($data, "allow_only_contributors_to_track_time");
+			}
+			if (\Reflect::hasField($data, "enable_issue_dependencies")) {
+				$this->enableIssueDependencies = \Reflect::field($data, "enable_issue_dependencies");
+			}
+			if (\Reflect::hasField($data, "enable_time_tracker")) {
+				$this->enableTimeTracker = \Reflect::field($data, "enable_time_tracker");
+			}
+		}
 	}
 }
 

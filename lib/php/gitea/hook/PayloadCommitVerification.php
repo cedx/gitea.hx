@@ -38,43 +38,35 @@ class PayloadCommitVerification {
 	public $signer;
 
 	/**
-	 * Creates a new payload commit verification from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return PayloadCommitVerification
-	 */
-	public static function fromJson ($map) {
-		$model = new PayloadCommitVerification();
-		if (\Reflect::hasField($map, "payload") && is_string(\Reflect::field($map, "payload"))) {
-			$model->payload = \Reflect::field($map, "payload");
-		}
-		if (\Reflect::hasField($map, "reason") && is_string(\Reflect::field($map, "reason"))) {
-			$model->reason = \Reflect::field($map, "reason");
-		}
-		if (\Reflect::hasField($map, "signer") && \Reflect::isObject(\Reflect::field($map, "signer"))) {
-			$model->signer = PayloadUser::fromJson(\Reflect::field($map, "signer"));
-		}
-		if (\Reflect::hasField($map, "signature") && is_string(\Reflect::field($map, "signature"))) {
-			$model->signature = \Reflect::field($map, "signature");
-		}
-		if (\Reflect::hasField($map, "verified") && is_bool(\Reflect::field($map, "verified"))) {
-			$model->isVerified = \Reflect::field($map, "verified");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new payload commit verification.
+	 * 
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct () {
+	public function __construct ($data = null) {
 		$this->signer = null;
 		$this->signature = "";
 		$this->reason = "";
 		$this->payload = "";
 		$this->isVerified = false;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "payload") && is_string(\Reflect::field($data, "payload"))) {
+				$this->payload = \Reflect::field($data, "payload");
+			}
+			if (\Reflect::hasField($data, "reason") && is_string(\Reflect::field($data, "reason"))) {
+				$this->reason = \Reflect::field($data, "reason");
+			}
+			if (\Reflect::hasField($data, "signer") && \Reflect::isObject(\Reflect::field($data, "signer"))) {
+				$this->signer = new PayloadUser(\Reflect::field($data, "signer"));
+			}
+			if (\Reflect::hasField($data, "signature") && is_string(\Reflect::field($data, "signature"))) {
+				$this->signature = \Reflect::field($data, "signature");
+			}
+			if (\Reflect::hasField($data, "verified") && is_bool(\Reflect::field($data, "verified"))) {
+				$this->isVerified = \Reflect::field($data, "verified");
+			}
+		}
 	}
 }
 

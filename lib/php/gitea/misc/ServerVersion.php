@@ -18,25 +18,19 @@ class ServerVersion {
 	public $version;
 
 	/**
-	 * Creates a new server version from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return ServerVersion
-	 */
-	public static function fromJson ($map) {
-		return new ServerVersion((\Reflect::hasField($map, "version") ? \Reflect::field($map, "version") : ""));
-	}
-
-	/**
 	 * Creates a new server version.
 	 * 
-	 * @param string $version
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($version) {
-		$this->version = $version;
+	public function __construct ($data = null) {
+		$this->version = "";
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "version")) {
+				$this->version = \Reflect::field($data, "version");
+			}
+		}
 	}
 }
 

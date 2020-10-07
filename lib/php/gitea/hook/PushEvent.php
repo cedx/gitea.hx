@@ -60,59 +60,13 @@ class PushEvent {
 	public $sender;
 
 	/**
-	 * Creates a new push event from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return PushEvent
-	 */
-	public static function fromJson ($map) {
-		$model = new PushEvent();
-		if (\Reflect::hasField($map, "after") && is_string(\Reflect::field($map, "after"))) {
-			$model->after = \Reflect::field($map, "after");
-		}
-		if (\Reflect::hasField($map, "before") && is_string(\Reflect::field($map, "before"))) {
-			$model->before = \Reflect::field($map, "before");
-		}
-		if (\Reflect::hasField($map, "commits") && (\Reflect::field($map, "commits") instanceof \Array_hx)) {
-			$_this = \Reflect::field($map, "commits");
-			$f = Boot::getStaticClosure(PayloadCommit::class, 'fromJson');
-			$result = [];
-			$data = $_this->arr;
-			$_g_current = 0;
-			$_g_length = \count($data);
-			while ($_g_current < $_g_length) {
-				$result[] = $f($data[$_g_current++]);
-			}
-			$model->commits = \Array_hx::wrap($result);
-		}
-		if (\Reflect::hasField($map, "compare_url") && is_string(\Reflect::field($map, "compare_url"))) {
-			$model->compareUrl = \Reflect::field($map, "compare_url");
-		}
-		if (\Reflect::hasField($map, "pusher") && \Reflect::isObject(\Reflect::field($map, "pusher"))) {
-			$model->pusher = User::fromJson(\Reflect::field($map, "pusher"));
-		}
-		if (\Reflect::hasField($map, "ref") && is_string(\Reflect::field($map, "ref"))) {
-			$model->ref = \Reflect::field($map, "ref");
-		}
-		if (\Reflect::hasField($map, "repository") && \Reflect::isObject(\Reflect::field($map, "repository"))) {
-			$model->repository = Repository::fromJson(\Reflect::field($map, "repository"));
-		}
-		if (\Reflect::hasField($map, "secret") && is_string(\Reflect::field($map, "secret"))) {
-			$model->secret = \Reflect::field($map, "secret");
-		}
-		if (\Reflect::hasField($map, "sender") && \Reflect::isObject(\Reflect::field($map, "sender"))) {
-			$model->sender = User::fromJson(\Reflect::field($map, "sender"));
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new push event.
+	 * 
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct () {
+	public function __construct ($data = null) {
 		$this->sender = null;
 		$this->secret = "";
 		$this->repository = null;
@@ -122,6 +76,43 @@ class PushEvent {
 		$this->commits = new \Array_hx();
 		$this->before = "";
 		$this->after = "";
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "after") && is_string(\Reflect::field($data, "after"))) {
+				$this->after = \Reflect::field($data, "after");
+			}
+			if (\Reflect::hasField($data, "before") && is_string(\Reflect::field($data, "before"))) {
+				$this->before = \Reflect::field($data, "before");
+			}
+			if (\Reflect::hasField($data, "commits") && (\Reflect::field($data, "commits") instanceof \Array_hx)) {
+				$_this = \Reflect::field($data, "commits");
+				$result = [];
+				$data1 = $_this->arr;
+				$_g_current = 0;
+				$_g_length = \count($data1);
+				while ($_g_current < $_g_length) {
+					$result[] = new PayloadCommit($data1[$_g_current++]);
+				}
+				$this->commits = \Array_hx::wrap($result);
+			}
+			if (\Reflect::hasField($data, "compare_url") && is_string(\Reflect::field($data, "compare_url"))) {
+				$this->compareUrl = \Reflect::field($data, "compare_url");
+			}
+			if (\Reflect::hasField($data, "pusher") && \Reflect::isObject(\Reflect::field($data, "pusher"))) {
+				$this->pusher = new User(\Reflect::field($data, "pusher"));
+			}
+			if (\Reflect::hasField($data, "ref") && is_string(\Reflect::field($data, "ref"))) {
+				$this->ref = \Reflect::field($data, "ref");
+			}
+			if (\Reflect::hasField($data, "repository") && \Reflect::isObject(\Reflect::field($data, "repository"))) {
+				$this->repository = new Repository(\Reflect::field($data, "repository"));
+			}
+			if (\Reflect::hasField($data, "secret") && is_string(\Reflect::field($data, "secret"))) {
+				$this->secret = \Reflect::field($data, "secret");
+			}
+			if (\Reflect::hasField($data, "sender") && \Reflect::isObject(\Reflect::field($data, "sender"))) {
+				$this->sender = new User(\Reflect::field($data, "sender"));
+			}
+		}
 	}
 }
 

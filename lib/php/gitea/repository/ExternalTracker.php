@@ -28,34 +28,27 @@ class ExternalTracker {
 	public $url;
 
 	/**
-	 * Creates a new external tracker from the specified JSON map.
-	 * 
-	 * @param mixed $map
-	 * 
-	 * @return ExternalTracker
-	 */
-	public static function fromJson ($map) {
-		$model = new ExternalTracker((\Reflect::hasField($map, "external_tracker_url") ? \Reflect::field($map, "external_tracker_url") : ""));
-		if (\Reflect::hasField($map, "external_tracker_format")) {
-			$model->format = \Reflect::field($map, "external_tracker_format");
-		}
-		if (\Reflect::hasField($map, "external_tracker_style")) {
-			$model->style = \Reflect::field($map, "external_tracker_style");
-		}
-		return $model;
-	}
-
-	/**
 	 * Creates a new external tracker.
 	 * 
-	 * @param string $url
+	 * @param mixed $data
 	 * 
 	 * @return void
 	 */
-	public function __construct ($url) {
+	public function __construct ($data = null) {
+		$this->url = "";
 		$this->style = "numeric";
 		$this->format = "";
-		$this->url = $url;
+		if ($data !== null) {
+			if (\Reflect::hasField($data, "external_tracker_format")) {
+				$this->format = \Reflect::field($data, "external_tracker_format");
+			}
+			if (\Reflect::hasField($data, "external_tracker_style")) {
+				$this->style = \Reflect::field($data, "external_tracker_style");
+			}
+			if (\Reflect::hasField($data, "external_tracker_url")) {
+				$this->url = \Reflect::field($data, "external_tracker_url");
+			}
+		}
 	}
 }
 
