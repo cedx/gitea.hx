@@ -7,7 +7,7 @@
 	"name": "@cedx/gitea",
 	"type": "commonjs",
 	"types": "./lib/js/index.d.ts",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": {
 		"email": "cedric@belin.io",
 		"name": "Cédric Belin",

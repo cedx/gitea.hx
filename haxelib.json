@@ -8,5 +8,5 @@
 	"releasenote": "Initial release.",
 	"tags": ["api", "client", "cross", "git", "gitea", "scm", "vcs"],
 	"url": "https://docs.belin.io/gitea.hx",
-	"version": "0.1.0"
+	"version": "0.2.0"
 }
