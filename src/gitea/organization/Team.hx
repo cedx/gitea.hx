@@ -12,7 +12,7 @@ import haxe.DynamicAccess;
 	public var description = "";
 
 	/** The team identifier. **/
-	public final id: Int;
+	public var id = -1;
 
 	/** Value indicating whether this team includes all repositories. **/
 	public var includesAllRepositories = false;
@@ -30,19 +30,15 @@ import haxe.DynamicAccess;
 	public var units: Array<String> = [];
 
 	/** Creates a new team. **/
-	public function new(id: Int) this.id = id;
-
-	/** Creates a new team from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new Team(map.exists("id") && Std.isOfType(map["id"], Int) ? map["id"] : -1);
-		if (map.exists("can_create_org_repo") && Std.isOfType(map["can_create_org_repo"], Bool)) model.canCreateOrgRepo = map["can_create_org_repo"];
-		if (map.exists("description") && Std.isOfType(map["description"], String)) model.description = map["description"];
-		if (map.exists("includes_all_repositories") && Std.isOfType(map["includes_all_repositories"], Bool)) model.includesAllRepositories = map["includes_all_repositories"];
-		if (map.exists("name") && Std.isOfType(map["name"], String)) model.name = map["name"];
-		if (map.exists("organization") && Reflect.isObject(map["organization"])) model.organization = Organization.fromJson(map["organization"]);
-		if (map.exists("permission") && Std.isOfType(map["permission"], String)) model.permission = map["permission"];
-		if (map.exists("units") && Std.isOfType(map["units"], Array)) model.units = map["units"];
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("can_create_org_repo") && Std.isOfType(data["can_create_org_repo"], Bool)) canCreateOrgRepo = data["can_create_org_repo"];
+		if (data.exists("description") && Std.isOfType(data["description"], String)) description = data["description"];
+		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
+		if (data.exists("includes_all_repositories") && Std.isOfType(data["includes_all_repositories"], Bool)) includesAllRepositories = data["includes_all_repositories"];
+		if (data.exists("name") && Std.isOfType(data["name"], String)) name = data["name"];
+		if (data.exists("organization") && Reflect.isObject(data["organization"])) organization = new Organization(data["organization"]);
+		if (data.exists("permission") && Std.isOfType(data["permission"], String)) permission = data["permission"];
+		if (data.exists("units") && Std.isOfType(data["units"], Array)) units = data["units"];
 	}
 }
 

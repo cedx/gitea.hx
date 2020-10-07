@@ -2,24 +2,18 @@ package gitea.user;
 
 import haxe.DynamicAccess;
 
-/** Represents the data needed to create a user heatmap. **/
-@:expose class UserHeatmapData {
+/** Represents the data needed to create a user heatdata. **/
+@:expose class UserHeatdataData {
 
 	/** The contribution number. **/
-	public var contributions: Int;
+	public var contributions = 0;
 
 	/** The contributions date.  **/
-	public final timestamp: Date;
+	public var timestamp = Date.now();
 
-	/** Creates a new heatmap data. **/
-	public function new(timestamp: Date, contributions = 0) {
-		this.contributions = contributions;
-		this.timestamp = timestamp;
+	/** Creates a new heatdata data. **/
+	public function new(?data: DynamicAccess<Int>) if (data != null) {
+		if (data.exists("contributions")) contributions = data["contributions"];
+		if (data.exists("timestamp")) timestamp = Date.fromTime(data["timestamp"] * 1000);
 	}
-
-	/** Creates a new heatmap data from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Int>) return new UserHeatmapData(
-		map.exists("timestamp") ? Date.fromTime(map["timestamp"] * 1000) : Date.now(),
-		map.exists("contributions") ? map["contributions"] : 0
-	);
 }

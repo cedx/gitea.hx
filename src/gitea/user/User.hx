@@ -19,7 +19,7 @@ import haxe.DynamicAccess;
 	public var fullName = "";
 
 	/** The user identifier. **/
-	public final id: Int;
+	public var id = -1;
 
 	/** Value indicating whether this user is an administrator. **/
 	public var isAdmin = false;
@@ -34,19 +34,15 @@ import haxe.DynamicAccess;
 	public var login = "";
 
 	/** Creates a new user. **/
-	public function new(id: Int) this.id = id;
-
-	/** Creates a new user from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new User(map.exists("id") && Std.isOfType(map["id"], Int) ? map["id"] : -1);
-		if (map.exists("avatar_url") && Std.isOfType(map["avatar_url"], String)) model.avatarUrl = map["avatar_url"];
-		if (map.exists("created") && Std.isOfType(map["created"], String)) model.created = DateTime.fromString(map["created"]);
-		if (map.exists("email") && Std.isOfType(map["email"], String)) model.email = map["email"];
-		if (map.exists("full_name") && Std.isOfType(map["full_name"], String)) model.fullName = map["full_name"];
-		if (map.exists("is_admin") && Std.isOfType(map["is_admin"], Bool)) model.isAdmin = map["is_admin"];
-		if (map.exists("language") && Std.isOfType(map["language"], String)) model.language = map["language"];
-		if (map.exists("last_login") && Std.isOfType(map["last_login"], String)) model.lastLogin = DateTime.fromString(map["last_login"]);
-		if (map.exists("login") && Std.isOfType(map["login"], String)) model.login = map["login"];
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("avatar_url") && Std.isOfType(data["avatar_url"], String)) avatarUrl = data["avatar_url"];
+		if (data.exists("created") && Std.isOfType(data["created"], String)) created = DateTime.fromString(data["created"]);
+		if (data.exists("email") && Std.isOfType(data["email"], String)) email = data["email"];
+		if (data.exists("full_name") && Std.isOfType(data["full_name"], String)) fullName = data["full_name"];
+		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
+		if (data.exists("is_admin") && Std.isOfType(data["is_admin"], Bool)) isAdmin = data["is_admin"];
+		if (data.exists("language") && Std.isOfType(data["language"], String)) language = data["language"];
+		if (data.exists("last_login") && Std.isOfType(data["last_login"], String)) lastLogin = DateTime.fromString(data["last_login"]);
+		if (data.exists("login") && Std.isOfType(data["login"], String)) login = data["login"];
 	}
 }

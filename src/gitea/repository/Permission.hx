@@ -15,14 +15,9 @@ import haxe.DynamicAccess;
 	public var push = false;
 
 	/** Creates a new set of permissions. **/
-	public function new() {}
-
-	/** Creates a new user from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Bool>) {
-		final model = new Permission();
-		if (map.exists("admin")) model.admin = map["admin"];
-		if (map.exists("pull")) model.pull = map["pull"];
-		if (map.exists("push")) model.push = map["push"];
-		return model;
+	public function new(?data: DynamicAccess<Bool>) if (data != null) {
+		if (data.exists("admin")) admin = data["admin"];
+		if (data.exists("pull")) pull = data["pull"];
+		if (data.exists("push")) push = data["push"];
 	}
 }

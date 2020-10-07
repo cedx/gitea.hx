@@ -6,20 +6,14 @@ import haxe.DynamicAccess;
 @:expose class ApiError {
 
 	/** A message describing the error. **/
-	public var message: String;
+	public var message = "";
 
 	/** The URL that is the source of the error. **/
-	public var url: String;
+	public var url = "";
 
 	/** Creates a new API error. **/
-	public function new(message: String, url: String) {
-		this.message = message;
-		this.url = url;
+	public function new(?data: DynamicAccess<String>) if (data != null) {
+		if (data.exists("message")) message = data["message"];
+		if (data.exists("url")) url = data["url"];
 	}
-
-	/** Creates a new heatmap data from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<String>) return new ApiError(
-		map.exists("message") ? map["message"] : "",
-		map.exists("url") ? map["url"] : ""
-	);
 }

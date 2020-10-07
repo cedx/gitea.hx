@@ -15,14 +15,9 @@ import haxe.DynamicAccess;
 	public var enableTimeTracker = false;
 
 	/** Creates a new internal tracker. **/
-	public function new() {}
-
-	/** Creates a new internal tracker from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Bool>) {
-		final model = new InternalTracker();
-		if (map.exists("allow_only_contributors_to_track_time")) model.allowOnlyContributorsToTrackTime = map["allow_only_contributors_to_track_time"];
-		if (map.exists("enable_issue_dependencies")) model.enableIssueDependencies = map["enable_issue_dependencies"];
-		if (map.exists("enable_time_tracker")) model.enableTimeTracker = map["enable_time_tracker"];
-		return model;
+	public function new(?data: DynamicAccess<Bool>) if (data != null) {
+		if (data.exists("allow_only_contributors_to_track_time")) allowOnlyContributorsToTrackTime = data["allow_only_contributors_to_track_time"];
+		if (data.exists("enable_issue_dependencies")) enableIssueDependencies = data["enable_issue_dependencies"];
+		if (data.exists("enable_time_tracker")) enableTimeTracker = data["enable_time_tracker"];
 	}
 }

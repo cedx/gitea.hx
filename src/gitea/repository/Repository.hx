@@ -59,7 +59,7 @@ import haxe.DynamicAccess;
 	public var htmlUrl = "";
 
 	/** The repository identifier. **/
-	public final id: Int;
+	public var id = -1;
 
 	/** Value indicating whether to ignore whitespace for conflicts. **/
 	public var ignoreWhitespaceConflicts = false;
@@ -128,50 +128,46 @@ import haxe.DynamicAccess;
 	public var website = "";
 
 	/** Creates a new repository. **/
-	public function new(id: Int) this.id = id;
-
-	/** Creates a new repository from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new Repository(map.exists("id") && Std.isOfType(map["id"], Int) ? map["id"] : -1);
-		if (map.exists("allow_merge_commits") && Std.isOfType(map["allow_merge_commits"], Bool)) model.allowMergeCommits = map["allow_merge_commits"];
-		if (map.exists("allow_rebase") && Std.isOfType(map["allow_rebase"], Bool)) model.allowRebase = map["allow_rebase"];
-		if (map.exists("allow_rebase_explicit") && Std.isOfType(map["allow_rebase_explicit"], Bool)) model.allowRebaseExplicit = map["allow_rebase_explicit"];
-		if (map.exists("allow_squash_merge") && Std.isOfType(map["allow_squash_merge"], Bool)) model.allowSquashMerge = map["allow_squash_merge"];
-		if (map.exists("archived") && Std.isOfType(map["archived"], Bool)) model.isArchived = map["archived"];
-		if (map.exists("avatar_url") && Std.isOfType(map["avatar_url"], String)) model.avatarUrl = map["avatar_url"];
-		if (map.exists("clone_url") && Std.isOfType(map["clone_url"], String)) model.cloneUrl = map["clone_url"];
-		if (map.exists("created_at") && Std.isOfType(map["created_at"], String)) model.createdAt = DateTime.fromString(map["created_at"]);
-		if (map.exists("default_branch") && Std.isOfType(map["default_branch"], String)) model.defaultBranch = map["default_branch"];
-		if (map.exists("description") && Std.isOfType(map["description"], String)) model.description = map["description"];
-		if (map.exists("empty") && Std.isOfType(map["empty"], Bool)) model.isEmpty = map["empty"];
-		if (map.exists("external_tracker") && Reflect.isObject(map["external_tracker"])) model.externalTracker = ExternalTracker.fromJson(map["external_tracker"]);
-		if (map.exists("external_wiki") && Reflect.isObject(map["external_wiki"])) model.externalWiki = ExternalWiki.fromJson(map["external_wiki"]);
-		if (map.exists("fork") && Std.isOfType(map["fork"], Bool)) model.isFork = map["fork"];
-		if (map.exists("forks_count") && Std.isOfType(map["forks_count"], Int)) model.forksCount = map["forks_count"];
-		if (map.exists("full_name") && Std.isOfType(map["full_name"], String)) model.fullName = map["full_name"];
-		if (map.exists("has_issues") && Std.isOfType(map["has_issues"], Bool)) model.hasIssues = map["has_issues"];
-		if (map.exists("has_pull_requests") && Std.isOfType(map["has_pull_requests"], Bool)) model.hasPullRequests = map["has_pull_requests"];
-		if (map.exists("has_wiki") && Std.isOfType(map["has_wiki"], Bool)) model.hasWiki = map["has_wiki"];
-		if (map.exists("html_url") && Std.isOfType(map["html_url"], String)) model.htmlUrl = map["html_url"];
-		if (map.exists("ignore_whitespace_conflicts") && Std.isOfType(map["ignore_whitespace_conflicts"], Bool)) model.ignoreWhitespaceConflicts = map["ignore_whitespace_conflicts"];
-		if (map.exists("internal_tracker") && Reflect.isObject(map["internal_tracker"])) model.internalTracker = InternalTracker.fromJson(map["internal_tracker"]);
-		if (map.exists("mirror") && Std.isOfType(map["mirror"], Bool)) model.isMirror = map["mirror"];
-		if (map.exists("name") && Std.isOfType(map["name"], String)) model.name = map["name"];
-		if (map.exists("open_issues_count") && Std.isOfType(map["open_issues_count"], Int)) model.openIssuesCount = map["open_issues_count"];
-		if (map.exists("open_pr_counter") && Std.isOfType(map["open_pr_counter"], Int)) model.openPullRequestsCount = map["open_pr_counter"];
-		if (map.exists("original_url") && Std.isOfType(map["original_url"], String)) model.originalUrl = map["original_url"];
-		if (map.exists("owner") && Reflect.isObject(map["owner"])) model.owner = User.fromJson(map["owner"]);
-		if (map.exists("parent") && Reflect.isObject(map["parent"])) model.parent = Repository.fromJson(map["parent"]);
-		if (map.exists("permissions") && Reflect.isObject(map["permissions"])) model.permissions = Permission.fromJson(map["permissions"]);
-		if (map.exists("private") && Std.isOfType(map["private"], Bool)) model.isPrivate = map["private"];
-		if (map.exists("release_counter") && Std.isOfType(map["release_counter"], Int)) model.releasesCount = map["release_counter"];
-		if (map.exists("size") && Std.isOfType(map["size"], Int)) model.size = map["size"];
-		if (map.exists("ssh_url") && Std.isOfType(map["ssh_url"], String)) model.sshUrl = map["ssh_url"];
-		if (map.exists("stars_count") && Std.isOfType(map["stars_count"], Int)) model.starsCount = map["stars_count"];
-		if (map.exists("template") && Std.isOfType(map["template"], Bool)) model.isTemplate = map["template"];
-		if (map.exists("updated_at") && Std.isOfType(map["updated_at"], String)) model.updatedAt = DateTime.fromString(map["updated_at"]);
-		if (map.exists("watchers_count") && Std.isOfType(map["watchers_count"], Int)) model.watchersCount = map["watchers_count"];
-		if (map.exists("website") && Std.isOfType(map["website"], String)) model.website = map["website"];
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("allow_merge_commits") && Std.isOfType(data["allow_merge_commits"], Bool)) allowMergeCommits = data["allow_merge_commits"];
+		if (data.exists("allow_rebase") && Std.isOfType(data["allow_rebase"], Bool)) allowRebase = data["allow_rebase"];
+		if (data.exists("allow_rebase_explicit") && Std.isOfType(data["allow_rebase_explicit"], Bool)) allowRebaseExplicit = data["allow_rebase_explicit"];
+		if (data.exists("allow_squash_merge") && Std.isOfType(data["allow_squash_merge"], Bool)) allowSquashMerge = data["allow_squash_merge"];
+		if (data.exists("archived") && Std.isOfType(data["archived"], Bool)) isArchived = data["archived"];
+		if (data.exists("avatar_url") && Std.isOfType(data["avatar_url"], String)) avatarUrl = data["avatar_url"];
+		if (data.exists("clone_url") && Std.isOfType(data["clone_url"], String)) cloneUrl = data["clone_url"];
+		if (data.exists("created_at") && Std.isOfType(data["created_at"], String)) createdAt = DateTime.fromString(data["created_at"]);
+		if (data.exists("default_branch") && Std.isOfType(data["default_branch"], String)) defaultBranch = data["default_branch"];
+		if (data.exists("description") && Std.isOfType(data["description"], String)) description = data["description"];
+		if (data.exists("empty") && Std.isOfType(data["empty"], Bool)) isEmpty = data["empty"];
+		if (data.exists("external_tracker") && Reflect.isObject(data["external_tracker"])) externalTracker = new ExternalTracker(data["external_tracker"]);
+		if (data.exists("external_wiki") && Reflect.isObject(data["external_wiki"])) externalWiki = new ExternalWiki(data["external_wiki"]);
+		if (data.exists("fork") && Std.isOfType(data["fork"], Bool)) isFork = data["fork"];
+		if (data.exists("forks_count") && Std.isOfType(data["forks_count"], Int)) forksCount = data["forks_count"];
+		if (data.exists("full_name") && Std.isOfType(data["full_name"], String)) fullName = data["full_name"];
+		if (data.exists("has_issues") && Std.isOfType(data["has_issues"], Bool)) hasIssues = data["has_issues"];
+		if (data.exists("has_pull_requests") && Std.isOfType(data["has_pull_requests"], Bool)) hasPullRequests = data["has_pull_requests"];
+		if (data.exists("has_wiki") && Std.isOfType(data["has_wiki"], Bool)) hasWiki = data["has_wiki"];
+		if (data.exists("html_url") && Std.isOfType(data["html_url"], String)) htmlUrl = data["html_url"];
+		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
+		if (data.exists("ignore_whitespace_conflicts") && Std.isOfType(data["ignore_whitespace_conflicts"], Bool)) ignoreWhitespaceConflicts = data["ignore_whitespace_conflicts"];
+		if (data.exists("internal_tracker") && Reflect.isObject(data["internal_tracker"])) internalTracker = new InternalTracker(data["internal_tracker"]);
+		if (data.exists("mirror") && Std.isOfType(data["mirror"], Bool)) isMirror = data["mirror"];
+		if (data.exists("name") && Std.isOfType(data["name"], String)) name = data["name"];
+		if (data.exists("open_issues_count") && Std.isOfType(data["open_issues_count"], Int)) openIssuesCount = data["open_issues_count"];
+		if (data.exists("open_pr_counter") && Std.isOfType(data["open_pr_counter"], Int)) openPullRequestsCount = data["open_pr_counter"];
+		if (data.exists("original_url") && Std.isOfType(data["original_url"], String)) originalUrl = data["original_url"];
+		if (data.exists("owner") && Reflect.isObject(data["owner"])) owner = new User(data["owner"]);
+		if (data.exists("parent") && Reflect.isObject(data["parent"])) parent = new Repository(data["parent"]);
+		if (data.exists("permissions") && Reflect.isObject(data["permissions"])) permissions = new Permission(data["permissions"]);
+		if (data.exists("private") && Std.isOfType(data["private"], Bool)) isPrivate = data["private"];
+		if (data.exists("release_counter") && Std.isOfType(data["release_counter"], Int)) releasesCount = data["release_counter"];
+		if (data.exists("size") && Std.isOfType(data["size"], Int)) size = data["size"];
+		if (data.exists("ssh_url") && Std.isOfType(data["ssh_url"], String)) sshUrl = data["ssh_url"];
+		if (data.exists("stars_count") && Std.isOfType(data["stars_count"], Int)) starsCount = data["stars_count"];
+		if (data.exists("template") && Std.isOfType(data["template"], Bool)) isTemplate = data["template"];
+		if (data.exists("updated_at") && Std.isOfType(data["updated_at"], String)) updatedAt = DateTime.fromString(data["updated_at"]);
+		if (data.exists("watchers_count") && Std.isOfType(data["watchers_count"], Int)) watchersCount = data["watchers_count"];
+		if (data.exists("website") && Std.isOfType(data["website"], String)) website = data["website"];
 	}
 }

@@ -6,28 +6,18 @@ import haxe.DynamicAccess;
 @:expose class PayloadUser {
 
 	/** The mail address. **/
-	public final email: String;
+	public var email = "";
 
 	/** The full name. **/
-	public final name: String;
+	public var name = "";
 
 	/** The name of the user account. **/
 	public var username = "";
 
 	/** Creates a new payload user. **/
-	public function new(name: String, email: String) {
-		this.email = email;
-		this.name = name;
-	}
-
-	/** Creates a new payload user from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<String>) {
-		final model = new PayloadUser(
-			map.exists("name") ? map["name"] : "",
-			map.exists("email") ? map["email"] : ""
-		);
-
-		if (map.exists("username")) model.username = map["username"];
-		return model;
+	public function new(?data: DynamicAccess<String>) if (data != null) {
+		if (data.exists("email")) email = data["email"];
+		if (data.exists("name")) name = data["name"];
+		if (data.exists("username")) username = data["username"];
 	}
 }

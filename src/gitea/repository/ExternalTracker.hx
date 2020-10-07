@@ -12,17 +12,13 @@ import haxe.DynamicAccess;
 	public var style: ExternalTrackerStyle = Numeric;
 
 	/** The URL of the external issue tracker. **/
-	public var url: String;
+	public var url = "";
 
 	/** Creates a new external tracker. **/
-	public function new(url: String) this.url = url;
-
-	/** Creates a new external tracker from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<String>) {
-		final model = new ExternalTracker(map.exists("external_tracker_url") ? map["external_tracker_url"] : "");
-		if (map.exists("external_tracker_format")) model.format = map["external_tracker_format"];
-		if (map.exists("external_tracker_style")) model.style = map["external_tracker_style"];
-		return model;
+	public function new(?data: DynamicAccess<String>) if (data != null) {
+		if (data.exists("external_tracker_format")) format = data["external_tracker_format"];
+		if (data.exists("external_tracker_style")) style = data["external_tracker_style"];
+		if (data.exists("external_tracker_url")) url = data["external_tracker_url"];
 	}
 }
 

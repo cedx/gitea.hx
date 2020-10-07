@@ -15,7 +15,7 @@ import haxe.DynamicAccess;
 	public var fullName = "";
 
 	/** The organization identifier. **/
-	public final id: Int;
+	public var id = -1;
 
 	/** The organization's location. **/
 	public var location = "";
@@ -33,20 +33,16 @@ import haxe.DynamicAccess;
 	public var website = "";
 
 	/** Creates a new organization. **/
-	public function new(id: Int) this.id = id;
-
-	/** Creates a new organization from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new Organization(map.exists("id") && Std.isOfType(map["id"], Int) ? map["id"] : -1);
-		if (map.exists("avatar_url") && Std.isOfType(map["avatar_url"], String)) model.avatarUrl = map["avatar_url"];
-		if (map.exists("description") && Std.isOfType(map["description"], String)) model.description = map["description"];
-		if (map.exists("full_name") && Std.isOfType(map["full_name"], String)) model.fullName = map["full_name"];
-		if (map.exists("location") && Std.isOfType(map["location"], String)) model.location = map["location"];
-		if (map.exists("repo_admin_change_team_access") && Std.isOfType(map["repo_admin_change_team_access"], Bool)) model.repoAdminCanChangeTeamAccess = map["repo_admin_change_team_access"];
-		if (map.exists("username") && Std.isOfType(map["username"], String)) model.username = map["username"];
-		if (map.exists("visibility") && Std.isOfType(map["visibility"], String)) model.visibility = map["visibility"];
-		if (map.exists("website") && Std.isOfType(map["website"], String)) model.website = map["website"];
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("avatar_url") && Std.isOfType(data["avatar_url"], String)) avatarUrl = data["avatar_url"];
+		if (data.exists("description") && Std.isOfType(data["description"], String)) description = data["description"];
+		if (data.exists("full_name") && Std.isOfType(data["full_name"], String)) fullName = data["full_name"];
+		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
+		if (data.exists("location") && Std.isOfType(data["location"], String)) location = data["location"];
+		if (data.exists("repo_admin_change_team_access") && Std.isOfType(data["repo_admin_change_team_access"], Bool)) repoAdminCanChangeTeamAccess = data["repo_admin_change_team_access"];
+		if (data.exists("username") && Std.isOfType(data["username"], String)) username = data["username"];
+		if (data.exists("visibility") && Std.isOfType(data["visibility"], String)) visibility = data["visibility"];
+		if (data.exists("website") && Std.isOfType(data["website"], String)) website = data["website"];
 	}
 }
 

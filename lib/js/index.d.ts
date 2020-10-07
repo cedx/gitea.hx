@@ -1,10 +1,7 @@
-export declare type Json = null | boolean | number | string | Json[] | {[property: string]: Json};
-
 export declare class ApiError {
 	message: string;
 	url: string;
-	constructor(message: string, url: string);
-	static fromJson(map: Record<string, Json>): ApiError;
+	constructor(data?: Record<string, string>);
 }
 
 export declare namespace hook {
@@ -20,9 +17,8 @@ export declare namespace misc {
 	}
 
 	export class ServerVersion {
-		readonly version: string;
-		constructor(version: string);
-		static fromJson(map: Record<string, Json>): ServerVersion;
+		version: string;
+		constructor(data?: Record<string, string>);
 	}
 }
 
@@ -40,19 +36,17 @@ export declare namespace user {
 		created?: Date;
 		email: string;
 		fullName: string;
-		readonly id: number;
+		id: number;
 		isAdmin: boolean;
 		language: string;
 		lastLogin?: Date;
 		login: string;
-		constructor(id: number);
-		static fromJson(map: Record<string, Json>): User;
+		constructor(data?: Record<string, unknown>);
 	}
 
 	export class UserHeatmapData {
 		contributions: number;
-		readonly timestamp: Date;
-		constructor(timestamp: Date, contributions?: number);
-		static fromJson(map: Record<string, Json>): UserHeatmapData;
+		timestamp: Date;
+		constructor(data?: Record<string, number>);
 	}
 }

@@ -21,16 +21,11 @@ import haxe.DynamicAccess;
 	public var signer: Null<PayloadUser> = null;
 
 	/** Creates a new payload commit verification. **/
-	public function new() {}
-
-	/** Creates a new payload commit verification from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new PayloadCommitVerification();
-		if (map.exists("payload") && Std.isOfType(map["payload"], String)) model.payload = map["payload"];
-		if (map.exists("reason") && Std.isOfType(map["reason"], String)) model.reason = map["reason"];
-		if (map.exists("signer") && Reflect.isObject(map["signer"])) model.signer = PayloadUser.fromJson(map["signer"]);
-		if (map.exists("signature") && Std.isOfType(map["signature"], String)) model.signature = map["signature"];
-		if (map.exists("verified") && Std.isOfType(map["verified"], Bool)) model.isVerified = map["verified"];
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("payload") && Std.isOfType(data["payload"], String)) payload = data["payload"];
+		if (data.exists("reason") && Std.isOfType(data["reason"], String)) reason = data["reason"];
+		if (data.exists("signer") && Reflect.isObject(data["signer"])) signer = new PayloadUser(data["signer"]);
+		if (data.exists("signature") && Std.isOfType(data["signature"], String)) signature = data["signature"];
+		if (data.exists("verified") && Std.isOfType(data["verified"], Bool)) isVerified = data["verified"];
 	}
 }

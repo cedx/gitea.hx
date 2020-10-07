@@ -2,6 +2,13 @@
 	"defaultSeverity": "ERROR",
 	"exclude": {
 		"path": "RELATIVE_TO_SOURCE",
+		"CyclomaticComplexity": [
+			"gitea/hook/PayloadCommit:new",
+			"gitea/hook/PushEvent:new",
+			"gitea/organization/Organization:new",
+			"gitea/repository/Repository:new",
+			"gitea/user/User:new"
+		],
 		"LineLength": [
 			"gitea/organization/Organization",
 			"gitea/organization/Team",
@@ -13,6 +20,9 @@
 			"gitea/organization/Team",
 			"gitea/repository/ExternalTracker",
 			"gitea/repository/StatusState"
+		],
+		"UnnecessaryConstructor": [
+			"gitea/misc/ServerVersion"
 		]
 	},
 	"checks": [

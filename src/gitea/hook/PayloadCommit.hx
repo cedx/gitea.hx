@@ -16,10 +16,10 @@ import haxe.DynamicAccess;
 	public var committer: Null<PayloadUser> = null;
 
 	/** The commit hash. **/
-	public final id: String;
+	public var id = "";
 
 	/** The commit message. **/
-	public final message: String;
+	public var message = "";
 
 	/** The list of modified files. **/
 	public var modified: Array<String> = [];
@@ -37,26 +37,16 @@ import haxe.DynamicAccess;
 	public var verification: Null<PayloadCommitVerification> = null;
 
 	/** Creates a new payload commit. **/
-	public function new(id: String, message = "") {
-		this.id = id;
-		this.message = message;
-	}
-
-	/** Creates a new payload commit from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new PayloadCommit(
-			map.exists("id") && Std.isOfType(map["id"], String) ? map["id"] : "",
-			map.exists("message") && Std.isOfType(map["message"], String) ? map["message"] : ""
-		);
-
-		if (map.exists("added") && Std.isOfType(map["added"], Array)) model.added = map["added"];
-		if (map.exists("author") && Reflect.isObject(map["author"])) model.author = PayloadUser.fromJson(map["author"]);
-		if (map.exists("committer") && Reflect.isObject(map["committer"])) model.committer = PayloadUser.fromJson(map["committer"]);
-		if (map.exists("modified") && Std.isOfType(map["modified"], Array)) model.modified = map["modified"];
-		if (map.exists("removed") && Std.isOfType(map["removed"], Array)) model.removed = map["removed"];
-		if (map.exists("timestamp") && Std.isOfType(map["timestamp"], String)) model.timestamp = DateTime.fromString(map["timestamp"]);
-		if (map.exists("url") && Std.isOfType(map["url"], String)) model.url = map["url"];
-		if (map.exists("verification") && Reflect.isObject(map["verification"])) model.verification = PayloadCommitVerification.fromJson(map["verification"]);
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("added") && Std.isOfType(data["added"], Array)) added = data["added"];
+		if (data.exists("author") && Reflect.isObject(data["author"])) author = new PayloadUser(data["author"]);
+		if (data.exists("committer") && Reflect.isObject(data["committer"])) committer = new PayloadUser(data["committer"]);
+		if (data.exists("id") && Std.isOfType(data["id"], String)) id = data["id"];
+		if (data.exists("message") && Std.isOfType(data["message"], String)) message = data["message"];
+		if (data.exists("modified") && Std.isOfType(data["modified"], Array)) modified = data["modified"];
+		if (data.exists("removed") && Std.isOfType(data["removed"], Array)) removed = data["removed"];
+		if (data.exists("timestamp") && Std.isOfType(data["timestamp"], String)) timestamp = DateTime.fromString(data["timestamp"]);
+		if (data.exists("url") && Std.isOfType(data["url"], String)) url = data["url"];
+		if (data.exists("verification") && Reflect.isObject(data["verification"])) verification = new PayloadCommitVerification(data["verification"]);
 	}
 }

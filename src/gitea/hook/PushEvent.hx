@@ -35,20 +35,15 @@ import haxe.DynamicAccess;
 	public var sender: Null<User> = null;
 
 	/** Creates a new push event. **/
-	public function new() {}
-
-	/** Creates a new push event from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
-		final model = new PushEvent();
-		if (map.exists("after") && Std.isOfType(map["after"], String)) model.after = map["after"];
-		if (map.exists("before") && Std.isOfType(map["before"], String)) model.before = map["before"];
-		if (map.exists("commits") && Std.isOfType(map["commits"], Array)) model.commits = (map["commits"]: Array<Dynamic>).map(PayloadCommit.fromJson);
-		if (map.exists("compare_url") && Std.isOfType(map["compare_url"], String)) model.compareUrl = map["compare_url"];
-		if (map.exists("pusher") && Reflect.isObject(map["pusher"])) model.pusher = User.fromJson(map["pusher"]);
-		if (map.exists("ref") && Std.isOfType(map["ref"], String)) model.ref = map["ref"];
-		if (map.exists("repository") && Reflect.isObject(map["repository"])) model.repository = Repository.fromJson(map["repository"]);
-		if (map.exists("secret") && Std.isOfType(map["secret"], String)) model.secret = map["secret"];
-		if (map.exists("sender") && Reflect.isObject(map["sender"])) model.sender = User.fromJson(map["sender"]);
-		return model;
+	public function new(?data: DynamicAccess<Any>) if (data != null) {
+		if (data.exists("after") && Std.isOfType(data["after"], String)) after = data["after"];
+		if (data.exists("before") && Std.isOfType(data["before"], String)) before = data["before"];
+		if (data.exists("commits") && Std.isOfType(data["commits"], Array)) commits = (data["commits"]: Array<Dynamic>).map(PayloadCommit.new);
+		if (data.exists("compare_url") && Std.isOfType(data["compare_url"], String)) compareUrl = data["compare_url"];
+		if (data.exists("pusher") && Reflect.isObject(data["pusher"])) pusher = new User(data["pusher"]);
+		if (data.exists("ref") && Std.isOfType(data["ref"], String)) ref = data["ref"];
+		if (data.exists("repository") && Reflect.isObject(data["repository"])) repository = new Repository(data["repository"]);
+		if (data.exists("secret") && Std.isOfType(data["secret"], String)) secret = data["secret"];
+		if (data.exists("sender") && Reflect.isObject(data["sender"])) sender = new User(data["sender"]);
 	}
 }

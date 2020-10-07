@@ -6,13 +6,10 @@ import haxe.DynamicAccess;
 @:expose class ExternalWiki {
 
 	/** The URL of the external wiki. **/
-	public var url: String;
+	public var url = "";
 
 	/** Creates a new external wiki. **/
-	public function new(url: String) this.url = url;
-
-	/** Creates a new external wiki from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<String>) return new ExternalWiki(
-		map.exists("external_wiki_url") ? map["external_wiki_url"] : ""
-	);
+	public function new(?data: DynamicAccess<String>) if (data != null) {
+		if (data.exists("external_wiki_url")) url = data["external_wiki_url"];
+	}
 }

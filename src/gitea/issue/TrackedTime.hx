@@ -21,18 +21,18 @@ import haxe.DynamicAccess;
 	public var userId = -1;
 
 	/** Creates a new tracked time. **/
-	public function new() {}
+	public function new(?data: DynamicAccess<Any>) if (data != null) {}
 
-	/** Creates a new tracked time from the specified JSON map. **/
-	public static function fromJson(map: DynamicAccess<Dynamic>) {
+	/** Creates a new tracked time from the specified JSON data. **/
+	public static function fromJson() {
 		final model = new TrackedTime();
 		return model;
 		/* return new self([
-			"createdAt" => isset($map["created"]) && is_string($map["created"]) ? new DateTimeImmutable($map["created"]) : null,
-			"id" => isset($map["id"]) && is_int($map["id"]) ? $map["id"] : -1,
-			"issueId" => isset($map["issue_id"]) && is_int($map["issue_id"]) ? $map["issue_id"] : -1,
-			"time" => isset($map["time"]) && is_int($map["time"]) ? $map["time"] : 0,
-			"userId" => isset($map["user_id"]) && is_int($map["user_id"]) ? $map["user_id"] : -1
+			"createdAt" => isset($data["created"]) && is_string($data["created"]) ? new DateTimeImmutable($data["created"]) : null,
+			"id" => isset($data["id"]) && is_int($data["id"]) ? $data["id"] : -1,
+			"issueId" => isset($data["issue_id"]) && is_int($data["issue_id"]) ? $data["issue_id"] : -1,
+			"time" => isset($data["time"]) && is_int($data["time"]) ? $data["time"] : 0,
+			"userId" => isset($data["user_id"]) && is_int($data["user_id"]) ? $data["user_id"] : -1
 		]);*/
 	}
 }
