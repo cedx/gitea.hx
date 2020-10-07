@@ -2,7 +2,7 @@
 ![Haxe](https://badgen.net/badge/haxe/%3E%3D4.1.0/green) ![Haxelib](https://badgen.net/haxelib/v/gitea) ![Downloads](https://badgen.net/haxelib/d/gitea)  
 ![Node.js](https://badgen.net/npm/node/@cedx/gitea) ![npm](https://badgen.net/npm/v/@cedx/gitea) ![Types](https://badgen.net/npm/types/@cedx/gitea) ![Downloads](https://badgen.net/npm/dt/@cedx/gitea)  
 ![PHP](https://badgen.net/packagist/php/cedx/gitea) ![Packagist](https://badgen.net/packagist/v/cedx/gitea) ![Downloads](https://badgen.net/packagist/dt/cedx/gitea)  
-![License](https://badgen.net/badge/license/MIT/blue)
+![Gitea API](https://badgen.net/badge/gitea%20api/1.1.1/blue) ![License](https://badgen.net/badge/license/MIT/blue)
 
 [Gitea](https://gitea.io) client library for [Haxe](https://haxe.org),
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [PHP](https://www.php.net).
