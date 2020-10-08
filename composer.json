@@ -30,6 +30,9 @@
 		"ext-mbstring": "*",
 		"cedx/haxe": "^1.4.0"
 	},
+	"require-dev": {
+		"cedx/coveralls": "^13.2.0"
+	},
 	"scripts": {
 		"coverage": "coveralls var/gitea.info"
 	},
