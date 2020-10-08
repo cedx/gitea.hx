@@ -10,6 +10,7 @@ import datetime.DateTime;
 
 /** Provides static methods for managing dates. **/
 @:allow(gitea)
+@:noDoc
 class DateTools {
 
 	/**
