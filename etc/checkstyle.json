@@ -10,9 +10,9 @@
 			"gitea/user/User:new"
 		],
 		"LineLength": [
-			"gitea/organization/Organization",
-			"gitea/organization/Team",
-			"gitea/repository/Repository"
+			"gitea/organization/Organization:new",
+			"gitea/organization/Team:new",
+			"gitea/repository/Repository:new"
 		],
 		"MemberName": [
 			"gitea/misc/MarkdownOption",
@@ -21,8 +21,8 @@
 			"gitea/repository/ExternalTracker",
 			"gitea/repository/StatusState"
 		],
-		"UnnecessaryConstructor": [
-			"gitea/misc/ServerVersion"
+		"ReturnCount": [
+			"gitea/DateTools:parseIsoString"
 		]
 	},
 	"checks": [

@@ -6,7 +6,7 @@
 namespace gitea\user;
 
 use \php\Boot;
-use \datetime\utils\DateTimeUtils;
+use \gitea\DateTools;
 
 /**
  * Represents a Gitea user.
@@ -80,7 +80,7 @@ class User {
 				$this->avatarUrl = \Reflect::field($data, "avatar_url");
 			}
 			if (\Reflect::hasField($data, "created") && is_string(\Reflect::field($data, "created"))) {
-				$this->created = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "created")) - 62135596800.0) * 1000);
+				$this->created = DateTools::parseIsoString(\Reflect::field($data, "created"));
 			}
 			if (\Reflect::hasField($data, "email") && is_string(\Reflect::field($data, "email"))) {
 				$this->email = \Reflect::field($data, "email");
@@ -98,7 +98,7 @@ class User {
 				$this->language = \Reflect::field($data, "language");
 			}
 			if (\Reflect::hasField($data, "last_login") && is_string(\Reflect::field($data, "last_login"))) {
-				$this->lastLogin = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "last_login")) - 62135596800.0) * 1000);
+				$this->lastLogin = DateTools::parseIsoString(\Reflect::field($data, "last_login"));
 			}
 			if (\Reflect::hasField($data, "login") && is_string(\Reflect::field($data, "login"))) {
 				$this->login = \Reflect::field($data, "login");

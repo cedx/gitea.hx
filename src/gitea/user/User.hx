@@ -1,6 +1,6 @@
 package gitea.user;
 
-import datetime.DateTime;
+import gitea.DateTools;
 import haxe.DynamicAccess;
 
 /** Represents a Gitea user. **/
@@ -36,13 +36,13 @@ import haxe.DynamicAccess;
 	/** Creates a new user. **/
 	public function new(?data: DynamicAccess<Any>) if (data != null) {
 		if (data.exists("avatar_url") && Std.isOfType(data["avatar_url"], String)) avatarUrl = data["avatar_url"];
-		if (data.exists("created") && Std.isOfType(data["created"], String)) created = DateTime.fromString(data["created"]);
+		if (data.exists("created") && Std.isOfType(data["created"], String)) created = DateTools.parseIsoString(data["created"]);
 		if (data.exists("email") && Std.isOfType(data["email"], String)) email = data["email"];
 		if (data.exists("full_name") && Std.isOfType(data["full_name"], String)) fullName = data["full_name"];
 		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
 		if (data.exists("is_admin") && Std.isOfType(data["is_admin"], Bool)) isAdmin = data["is_admin"];
 		if (data.exists("language") && Std.isOfType(data["language"], String)) language = data["language"];
-		if (data.exists("last_login") && Std.isOfType(data["last_login"], String)) lastLogin = DateTime.fromString(data["last_login"]);
+		if (data.exists("last_login") && Std.isOfType(data["last_login"], String)) lastLogin = DateTools.parseIsoString(data["last_login"]);
 		if (data.exists("login") && Std.isOfType(data["login"], String)) login = data["login"];
 	}
 }

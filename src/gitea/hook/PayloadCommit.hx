@@ -1,6 +1,6 @@
 package gitea.hook;
 
-import datetime.DateTime;
+import gitea.DateTools;
 import haxe.DynamicAccess;
 
 /** Represents a commit. **/
@@ -45,7 +45,7 @@ import haxe.DynamicAccess;
 		if (data.exists("message") && Std.isOfType(data["message"], String)) message = data["message"];
 		if (data.exists("modified") && Std.isOfType(data["modified"], Array)) modified = data["modified"];
 		if (data.exists("removed") && Std.isOfType(data["removed"], Array)) removed = data["removed"];
-		if (data.exists("timestamp") && Std.isOfType(data["timestamp"], String)) timestamp = DateTime.fromString(data["timestamp"]);
+		if (data.exists("timestamp") && Std.isOfType(data["timestamp"], String)) timestamp = DateTools.parseIsoString(data["timestamp"]);
 		if (data.exists("url") && Std.isOfType(data["url"], String)) url = data["url"];
 		if (data.exists("verification") && Reflect.isObject(data["verification"])) verification = new PayloadCommitVerification(data["verification"]);
 	}

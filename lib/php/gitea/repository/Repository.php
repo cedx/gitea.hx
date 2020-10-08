@@ -6,7 +6,7 @@
 namespace gitea\repository;
 
 use \php\Boot;
-use \datetime\utils\DateTimeUtils;
+use \gitea\DateTools;
 use \gitea\user\User;
 
 /**
@@ -285,7 +285,7 @@ class Repository {
 				$this->cloneUrl = \Reflect::field($data, "clone_url");
 			}
 			if (\Reflect::hasField($data, "created_at") && is_string(\Reflect::field($data, "created_at"))) {
-				$this->createdAt = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "created_at")) - 62135596800.0) * 1000);
+				$this->createdAt = DateTools::parseIsoString(\Reflect::field($data, "created_at"));
 			}
 			if (\Reflect::hasField($data, "default_branch") && is_string(\Reflect::field($data, "default_branch"))) {
 				$this->defaultBranch = \Reflect::field($data, "default_branch");
@@ -375,7 +375,7 @@ class Repository {
 				$this->isTemplate = \Reflect::field($data, "template");
 			}
 			if (\Reflect::hasField($data, "updated_at") && is_string(\Reflect::field($data, "updated_at"))) {
-				$this->updatedAt = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "updated_at")) - 62135596800.0) * 1000);
+				$this->updatedAt = DateTools::parseIsoString(\Reflect::field($data, "updated_at"));
 			}
 			if (\Reflect::hasField($data, "watchers_count") && Boot::isOfType(\Reflect::field($data, "watchers_count"), Boot::getClass('Int'))) {
 				$this->watchersCount = \Reflect::field($data, "watchers_count");

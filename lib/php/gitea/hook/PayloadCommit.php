@@ -6,7 +6,7 @@
 namespace gitea\hook;
 
 use \php\Boot;
-use \datetime\utils\DateTimeUtils;
+use \gitea\DateTools;
 
 /**
  * Represents a commit.
@@ -104,7 +104,7 @@ class PayloadCommit {
 				$this->removed = \Reflect::field($data, "removed");
 			}
 			if (\Reflect::hasField($data, "timestamp") && is_string(\Reflect::field($data, "timestamp"))) {
-				$this->timestamp = \Date::fromTime((DateTimeUtils::fromString(\Reflect::field($data, "timestamp")) - 62135596800.0) * 1000);
+				$this->timestamp = DateTools::parseIsoString(\Reflect::field($data, "timestamp"));
 			}
 			if (\Reflect::hasField($data, "url") && is_string(\Reflect::field($data, "url"))) {
 				$this->url = \Reflect::field($data, "url");

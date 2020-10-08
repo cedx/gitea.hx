@@ -1,6 +1,6 @@
 package gitea.issue;
 
-import datetime.DateTime;
+import gitea.DateTools;
 import haxe.DynamicAccess;
 
 /** Represents a running stopwatch. **/
@@ -14,7 +14,7 @@ import haxe.DynamicAccess;
 
 	/** Creates a new stopwatch. **/
 	public function new(?data: DynamicAccess<Any>) if (data != null) {
-		if (data.exists("created") && Std.isOfType(data["created"], String)) created = DateTime.fromString(data["created"]);
+		if (data.exists("created") && Std.isOfType(data["created"], String)) created = DateTools.parseIsoString(data["created"]);
 		if (data.exists("issue_index") && Std.isOfType(data["issue_index"], Int)) issueIndex = data["issue_index"];
 	}
 }

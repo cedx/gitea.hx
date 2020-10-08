@@ -1,6 +1,6 @@
 package gitea.repository;
 
-import datetime.DateTime;
+import gitea.DateTools;
 import gitea.user.User;
 import haxe.DynamicAccess;
 
@@ -136,7 +136,7 @@ import haxe.DynamicAccess;
 		if (data.exists("archived") && Std.isOfType(data["archived"], Bool)) isArchived = data["archived"];
 		if (data.exists("avatar_url") && Std.isOfType(data["avatar_url"], String)) avatarUrl = data["avatar_url"];
 		if (data.exists("clone_url") && Std.isOfType(data["clone_url"], String)) cloneUrl = data["clone_url"];
-		if (data.exists("created_at") && Std.isOfType(data["created_at"], String)) createdAt = DateTime.fromString(data["created_at"]);
+		if (data.exists("created_at") && Std.isOfType(data["created_at"], String)) createdAt = DateTools.parseIsoString(data["created_at"]);
 		if (data.exists("default_branch") && Std.isOfType(data["default_branch"], String)) defaultBranch = data["default_branch"];
 		if (data.exists("description") && Std.isOfType(data["description"], String)) description = data["description"];
 		if (data.exists("empty") && Std.isOfType(data["empty"], Bool)) isEmpty = data["empty"];
@@ -166,7 +166,7 @@ import haxe.DynamicAccess;
 		if (data.exists("ssh_url") && Std.isOfType(data["ssh_url"], String)) sshUrl = data["ssh_url"];
 		if (data.exists("stars_count") && Std.isOfType(data["stars_count"], Int)) starsCount = data["stars_count"];
 		if (data.exists("template") && Std.isOfType(data["template"], Bool)) isTemplate = data["template"];
-		if (data.exists("updated_at") && Std.isOfType(data["updated_at"], String)) updatedAt = DateTime.fromString(data["updated_at"]);
+		if (data.exists("updated_at") && Std.isOfType(data["updated_at"], String)) updatedAt = DateTools.parseIsoString(data["updated_at"]);
 		if (data.exists("watchers_count") && Std.isOfType(data["watchers_count"], Int)) watchersCount = data["watchers_count"];
 		if (data.exists("website") && Std.isOfType(data["website"], String)) website = data["website"];
 	}
