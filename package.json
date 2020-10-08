@@ -45,7 +45,7 @@
 		"url": "https://git.belin.io/cedx/gitea.hx.git"
 	},
 	"scripts": {
-		"coverage": "coveralls var/gitea.info",
+		"coverage": "coveralls var/lcov.info",
 		"dist": "terser --config-file=etc/terser.json --output=build/gitea.min.js build/gitea.js",
 		"prepack": "pwsh tool/dist.ps1"
 	}

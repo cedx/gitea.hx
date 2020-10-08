@@ -34,7 +34,7 @@
 		"cedx/coveralls": "^13.2.0"
 	},
 	"scripts": {
-		"coverage": "coveralls var/gitea.info"
+		"coverage": "coveralls var/lcov.info"
 	},
 	"support": {
 		"docs": "https://api.belin.io/gitea.hx",
