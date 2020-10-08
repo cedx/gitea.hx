@@ -1,0 +1,8 @@
+--class-path src
+--class-path test
+--define coverage-lcov-reporter=var/lcov.info
+--library datetime:3.1.4
+--library instrument:1.1.0
+--library utest:1.13.1
+--macro instrument.Instrumentation.coverage(['gitea'], ['src'])
+--main TestAll
