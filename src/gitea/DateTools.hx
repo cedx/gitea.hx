@@ -34,12 +34,11 @@ class DateTools {
 			final time = dateString.substring(11, 19).split(":").map(Std.parseInt);
 			if (!validateTime(time[0], time[1], time[2])) return null;
 
-			final tz = dateString.charAt(dateString.length - 1) == "Z" ? "+00:00" : dateString.substring(dateString.length - 6);
-			final parts = tz.split(":").map(Std.parseInt);
-			if (!validateTimeZone(parts[0], parts[1])) return null;
+			final tz = (dateString.charAt(dateString.length - 1) == "Z" ? "+00:00" : dateString.substring(dateString.length - 6)).split(":").map(Std.parseInt);
+			if (!validateTimeZone(tz[0], tz[1])) return null;
 
-			final offset = Math.abs(parts[0] * 3600) + (parts[1] * 60);
-			final timestamp = DateTime.make(date[0], date[1], date[2], time[0], time[1], time[2]).getTime() + (tz.charAt(0) == "-" ? offset : -offset);
+			final offset = Math.abs(tz[0] * 3600) + (tz[1] * 60);
+			final timestamp = DateTime.make(date[0], date[1], date[2], time[0], time[1], time[2]).getTime() + (tz[0] < 0 ? offset : -offset);
 			return Date.fromTime(timestamp * 1000);
 		#end
 	}
