@@ -8,5 +8,5 @@
 	"releasenote": "Added the `gitea.CommitMeta`, `gitea.issue.StopWatch`, `gitea.repository.RepositoryMeta` and `gitea.repository.Tag` models.",
 	"tags": ["api", "client", "cross", "git", "gitea", "scm", "vcs"],
 	"url": "https://docs.belin.io/gitea.hx",
-	"version": "0.2.0"
+	"version": "0.2.1"
 }
