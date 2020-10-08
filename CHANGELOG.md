@@ -2,7 +2,7 @@
 
 ## Version [0.2.1](https://git.belin.io/cedx/gitea.hx/compare/v0.2.0...v0.2.1)
 - Fixed the parsing of ISO 8601 dates.
-- Added the `DateTools` class.
+- Added the `DateTools` private class.
 - Added some unit tests.
 
 ## Version [0.2.0](https://git.belin.io/cedx/gitea.hx/compare/v0.1.0...v0.2.0)
