@@ -64,6 +64,32 @@ export declare namespace organization {
 }
 
 export declare namespace repository {
+	export class ExternalTracker {
+		format: string;
+		style: string;
+		url: string;
+		constructor(data?: Record<string, string>);
+	}
+
+	export class ExternalWiki {
+		url: string;
+		constructor(data?: Record<string, string>);
+	}
+
+	export class InternalTracker {
+		allowOnlyContributorsToTrackTime: boolean;
+		enableIssueDependencies: boolean;
+		enableTimeTracker: boolean;
+		constructor(data?: Record<string, boolean>);
+	}
+
+	export class Permission {
+		admin: boolean;
+		pull: boolean;
+		push: boolean;
+		constructor(data?: Record<string, boolean>);
+	}
+
 	// TODO
 }
 
