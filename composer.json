@@ -28,7 +28,7 @@
 	"require": {
 		"php": ">=7.4.0",
 		"ext-mbstring": "*",
-		"cedx/haxe": "^1.4.0"
+		"cedx/haxe": "^1.5.0"
 	},
 	"require-dev": {
 		"cedx/coveralls": "^13.2.0"
