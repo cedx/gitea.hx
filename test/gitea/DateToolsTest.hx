@@ -1,7 +1,5 @@
 package gitea;
 
-import tink.unit.Assert.assert;
-
 /** Tests the features of the `DateTools` class. **/
 class DateToolsTest {
 
