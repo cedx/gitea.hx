@@ -7,24 +7,28 @@
 [Gitea](https://gitea.io) client library for [Haxe](https://haxe.org),
 [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [PHP](https://www.php.net).
 
-![Gitea](img/gitea.png)
-
-!!! danger "Not production ready"
-	This project is a **work in progress**.
+!> **Not production ready.** This project is a work in progress.
 
 ## Quick start
 Install the latest version of **Gitea.hx** with your favorite package manager:
 
-=== "Haxe"
-		:::shell
-		haxelib install gitea
+<!-- tabs:start -->
 
-=== "JavaScript"
-		:::shell
-		npm install @cedx/gitea
+#### **Haxe**
+```shell
+haxelib install gitea
+```
 
-=== "PHP"
-		:::shell
-		composer require cedx/gitea
+#### **JavaScript**
+```shell
+npm install @cedx/gitea
+```
+
+#### **PHP**
+```shell
+composer require cedx/gitea
+```
+
+<!-- tabs:end -->
 
 For detailed instructions, see the [installation guide](installation.md).
