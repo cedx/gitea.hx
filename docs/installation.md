@@ -29,7 +29,7 @@ npm --version
 #### **PHP**
 ```shell
 php --version
-# PHP 7.4.12 (cli) (built: Oct 27 2020 17:18:33) ( NTS Visual C++ 2017 x64 )
+# PHP 8.0.0 (cli) (built: Nov 24 2020 22:02:58) ( NTS Visual C++ 2019 x64 )
 
 composer --version
 # Composer version 2.0.7 2020-11-13 17:31:06
