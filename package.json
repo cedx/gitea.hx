@@ -6,7 +6,6 @@
 	"main": "./lib/js/index.js",
 	"name": "@cedx/gitea",
 	"type": "commonjs",
-	"types": "./lib/js/index.d.ts",
 	"version": "0.2.1",
 	"author": {
 		"email": "cedric@belin.io",
