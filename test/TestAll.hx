@@ -1,5 +1,3 @@
-import instrument.coverage.Coverage;
-import gitea.*;
 import tink.testrunner.Runner;
 import tink.unit.TestBatch;
 
@@ -15,13 +13,7 @@ class TestAll {
 	static function main() {
 		#if php if (Const.PHP_VERSION_ID >= 80000) error_reporting(Const.E_ALL & ~Const.E_DEPRECATED); #end
 
-		final tests = TestBatch.make([
-			new DateToolsTest()
-		]);
-
-		Runner.run(tests).handle(outcome -> {
-			Coverage.endCoverage();
-			Runner.exit(outcome);
-		});
+		final tests = TestBatch.make([]);
+		Runner.run(tests).handle(Runner.exit);
 	}
 }
