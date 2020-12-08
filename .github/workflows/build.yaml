@@ -13,9 +13,7 @@ jobs:
         with:
           haxe-version: 4.1.4
       - name: Check environment
-        run: |
-          haxe --version
-          haxelib version
+        run: haxe --version
       - name: Install dependencies
         run: |
           haxelib install all --always
@@ -58,9 +56,7 @@ jobs:
         with:
           node-version: 14
       - name: Check environment
-        run: |
-          node --version
-          npm --version
+        run: node --version
       - name: Install dependencies
         run: |
           haxelib install all --always
@@ -89,9 +85,7 @@ jobs:
           coverage: xdebug
           extensions: mbstring, simplexml
       - name: Check environment
-        run: |
-          php --version
-          composer --version
+        run: php --version
       - name: Install dependencies
         run: |
           haxelib install all --always
