@@ -36,9 +36,7 @@ jobs:
           Write-Host (Resolve-Path hashlink/hl-1.11.0-win)
           Add-Content $Env:GITHUB_PATH (Resolve-Path hashlink/hl-1.11.0-win) -NoNewline
       - name: Check environment
-        run: |
-          Write-Host $Env:PATH
-          hl --version
+        run: hl --version
       - name: Fetch sources
         uses: actions/checkout@v2
       - name: Install dependencies
@@ -47,7 +45,8 @@ jobs:
           haxelib set tink_core 1.27.1 --always
       - name: Run tests
         run: |
-          Write-Host $Env:PATH
+          Get-Location
+          Test-Path hashlink/hl-1.11.0-win
           haxe test_hl.hxml
   js:
     runs-on: ubuntu-latest
