@@ -1,6 +1,7 @@
 --class-path src
 --dce full
 --define analyzer-optimize
+--library tink_core:1.27.1
 --library tink_stringly:0.4.0
 
 gitea.ApiError

@@ -1,12 +1,12 @@
 {
 	"classPath": "src/",
 	"contributors": ["cedx"],
-	"dependencies": {"tink_stringly": "0.4.0"},
+	"dependencies": {"tink_core": "1.27.1", "tink_stringly": "0.4.0"},
 	"description": "Gitea client library.",
 	"license": "MIT",
 	"name": "gitea",
-	"releasenote": "Fixed the parsing of ISO 8601 dates.",
+	"releasenote": "Updated the package dependencies.",
 	"tags": ["api", "client", "cross", "git", "gitea", "scm", "vcs"],
 	"url": "https://docs.belin.io/gitea.hx",
-	"version": "0.2.1"
+	"version": "0.2.2"
 }
