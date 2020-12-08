@@ -40,10 +40,10 @@ import haxe.DynamicAccess;
 		if (data.exists("before") && Std.isOfType(data["before"], String)) before = data["before"];
 		if (data.exists("commits") && Std.isOfType(data["commits"], Array)) commits = (data["commits"]: Array<Dynamic>).map(PayloadCommit.new);
 		if (data.exists("compare_url") && Std.isOfType(data["compare_url"], String)) compareUrl = data["compare_url"];
-		if (data.exists("pusher") && Reflect.isObject(data["pusher"])) pusher = new User(data["pusher"]);
+		if (data.exists("pusher") && Type.typeof(data["pusher"]) == TObject) pusher = new User(data["pusher"]);
 		if (data.exists("ref") && Std.isOfType(data["ref"], String)) ref = data["ref"];
-		if (data.exists("repository") && Reflect.isObject(data["repository"])) repository = new Repository(data["repository"]);
+		if (data.exists("repository") && Type.typeof(data["repository"]) == TObject) repository = new Repository(data["repository"]);
 		if (data.exists("secret") && Std.isOfType(data["secret"], String)) secret = data["secret"];
-		if (data.exists("sender") && Reflect.isObject(data["sender"])) sender = new User(data["sender"]);
+		if (data.exists("sender") && Type.typeof(data["sender"]) == TObject) sender = new User(data["sender"]);
 	}
 }

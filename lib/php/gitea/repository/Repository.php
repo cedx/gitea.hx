@@ -6,7 +6,7 @@
 namespace gitea\repository;
 
 use \php\Boot;
-use \gitea\DateTools;
+use \tink\_Stringly\Stringly_Impl_;
 use \gitea\user\User;
 
 /**
@@ -285,7 +285,7 @@ class Repository {
 				$this->cloneUrl = \Reflect::field($data, "clone_url");
 			}
 			if (\Reflect::hasField($data, "created_at") && is_string(\Reflect::field($data, "created_at"))) {
-				$this->createdAt = DateTools::parseIsoString(\Reflect::field($data, "created_at"));
+				$this->createdAt = Stringly_Impl_::toDate(\Reflect::field($data, "created_at"));
 			}
 			if (\Reflect::hasField($data, "default_branch") && is_string(\Reflect::field($data, "default_branch"))) {
 				$this->defaultBranch = \Reflect::field($data, "default_branch");
@@ -296,10 +296,10 @@ class Repository {
 			if (\Reflect::hasField($data, "empty") && is_bool(\Reflect::field($data, "empty"))) {
 				$this->isEmpty = \Reflect::field($data, "empty");
 			}
-			if (\Reflect::hasField($data, "external_tracker") && \Reflect::isObject(\Reflect::field($data, "external_tracker"))) {
+			if (\Reflect::hasField($data, "external_tracker") && (\Type::typeof(\Reflect::field($data, "external_tracker")) === \ValueType::TObject())) {
 				$this->externalTracker = new ExternalTracker(\Reflect::field($data, "external_tracker"));
 			}
-			if (\Reflect::hasField($data, "external_wiki") && \Reflect::isObject(\Reflect::field($data, "external_wiki"))) {
+			if (\Reflect::hasField($data, "external_wiki") && (\Type::typeof(\Reflect::field($data, "external_wiki")) === \ValueType::TObject())) {
 				$this->externalWiki = new ExternalWiki(\Reflect::field($data, "external_wiki"));
 			}
 			if (\Reflect::hasField($data, "fork") && is_bool(\Reflect::field($data, "fork"))) {
@@ -329,7 +329,7 @@ class Repository {
 			if (\Reflect::hasField($data, "ignore_whitespace_conflicts") && is_bool(\Reflect::field($data, "ignore_whitespace_conflicts"))) {
 				$this->ignoreWhitespaceConflicts = \Reflect::field($data, "ignore_whitespace_conflicts");
 			}
-			if (\Reflect::hasField($data, "internal_tracker") && \Reflect::isObject(\Reflect::field($data, "internal_tracker"))) {
+			if (\Reflect::hasField($data, "internal_tracker") && (\Type::typeof(\Reflect::field($data, "internal_tracker")) === \ValueType::TObject())) {
 				$this->internalTracker = new InternalTracker(\Reflect::field($data, "internal_tracker"));
 			}
 			if (\Reflect::hasField($data, "mirror") && is_bool(\Reflect::field($data, "mirror"))) {
@@ -347,13 +347,13 @@ class Repository {
 			if (\Reflect::hasField($data, "original_url") && is_string(\Reflect::field($data, "original_url"))) {
 				$this->originalUrl = \Reflect::field($data, "original_url");
 			}
-			if (\Reflect::hasField($data, "owner") && \Reflect::isObject(\Reflect::field($data, "owner"))) {
+			if (\Reflect::hasField($data, "owner") && (\Type::typeof(\Reflect::field($data, "owner")) === \ValueType::TObject())) {
 				$this->owner = new User(\Reflect::field($data, "owner"));
 			}
-			if (\Reflect::hasField($data, "parent") && \Reflect::isObject(\Reflect::field($data, "parent"))) {
+			if (\Reflect::hasField($data, "parent") && (\Type::typeof(\Reflect::field($data, "parent")) === \ValueType::TObject())) {
 				$this->parent = new Repository(\Reflect::field($data, "parent"));
 			}
-			if (\Reflect::hasField($data, "permissions") && \Reflect::isObject(\Reflect::field($data, "permissions"))) {
+			if (\Reflect::hasField($data, "permissions") && (\Type::typeof(\Reflect::field($data, "permissions")) === \ValueType::TObject())) {
 				$this->permissions = new Permission(\Reflect::field($data, "permissions"));
 			}
 			if (\Reflect::hasField($data, "private") && is_bool(\Reflect::field($data, "private"))) {
@@ -375,7 +375,7 @@ class Repository {
 				$this->isTemplate = \Reflect::field($data, "template");
 			}
 			if (\Reflect::hasField($data, "updated_at") && is_string(\Reflect::field($data, "updated_at"))) {
-				$this->updatedAt = DateTools::parseIsoString(\Reflect::field($data, "updated_at"));
+				$this->updatedAt = Stringly_Impl_::toDate(\Reflect::field($data, "updated_at"));
 			}
 			if (\Reflect::hasField($data, "watchers_count") && Boot::isOfType(\Reflect::field($data, "watchers_count"), Boot::getClass('Int'))) {
 				$this->watchersCount = \Reflect::field($data, "watchers_count");

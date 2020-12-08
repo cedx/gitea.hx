@@ -1,7 +1,7 @@
 package gitea.hook;
 
-import gitea.DateTools;
 import haxe.DynamicAccess;
+import tink.Stringly;
 
 /** Represents a commit. **/
 @:expose class PayloadCommit {
@@ -39,14 +39,14 @@ import haxe.DynamicAccess;
 	/** Creates a new payload commit. **/
 	public function new(?data: DynamicAccess<Any>) if (data != null) {
 		if (data.exists("added") && Std.isOfType(data["added"], Array)) added = data["added"];
-		if (data.exists("author") && Reflect.isObject(data["author"])) author = new PayloadUser(data["author"]);
-		if (data.exists("committer") && Reflect.isObject(data["committer"])) committer = new PayloadUser(data["committer"]);
+		if (data.exists("author") && Type.typeof(data["author"]) == TObject) author = new PayloadUser(data["author"]);
+		if (data.exists("committer") && Type.typeof(data["committer"]) == TObject) committer = new PayloadUser(data["committer"]);
 		if (data.exists("id") && Std.isOfType(data["id"], String)) id = data["id"];
 		if (data.exists("message") && Std.isOfType(data["message"], String)) message = data["message"];
 		if (data.exists("modified") && Std.isOfType(data["modified"], Array)) modified = data["modified"];
 		if (data.exists("removed") && Std.isOfType(data["removed"], Array)) removed = data["removed"];
-		if (data.exists("timestamp") && Std.isOfType(data["timestamp"], String)) timestamp = DateTools.parseIsoString(data["timestamp"]);
+		if (data.exists("timestamp") && Std.isOfType(data["timestamp"], String)) timestamp = (data["timestamp"]: Stringly);
 		if (data.exists("url") && Std.isOfType(data["url"], String)) url = data["url"];
-		if (data.exists("verification") && Reflect.isObject(data["verification"])) verification = new PayloadCommitVerification(data["verification"]);
+		if (data.exists("verification") && Type.typeof(data["verification"]) == TObject) verification = new PayloadCommitVerification(data["verification"]);
 	}
 }

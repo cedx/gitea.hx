@@ -57,7 +57,7 @@ class PayloadCommitVerification {
 			if (\Reflect::hasField($data, "reason") && is_string(\Reflect::field($data, "reason"))) {
 				$this->reason = \Reflect::field($data, "reason");
 			}
-			if (\Reflect::hasField($data, "signer") && \Reflect::isObject(\Reflect::field($data, "signer"))) {
+			if (\Reflect::hasField($data, "signer") && (\Type::typeof(\Reflect::field($data, "signer")) === \ValueType::TObject())) {
 				$this->signer = new PayloadUser(\Reflect::field($data, "signer"));
 			}
 			if (\Reflect::hasField($data, "signature") && is_string(\Reflect::field($data, "signature"))) {

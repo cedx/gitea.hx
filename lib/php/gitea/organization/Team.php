@@ -84,7 +84,7 @@ class Team {
 			if (\Reflect::hasField($data, "name") && is_string(\Reflect::field($data, "name"))) {
 				$this->name = \Reflect::field($data, "name");
 			}
-			if (\Reflect::hasField($data, "organization") && \Reflect::isObject(\Reflect::field($data, "organization"))) {
+			if (\Reflect::hasField($data, "organization") && (\Type::typeof(\Reflect::field($data, "organization")) === \ValueType::TObject())) {
 				$this->organization = new Organization(\Reflect::field($data, "organization"));
 			}
 			if (\Reflect::hasField($data, "permission") && is_string(\Reflect::field($data, "permission"))) {

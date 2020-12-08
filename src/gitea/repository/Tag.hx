@@ -22,7 +22,7 @@ import haxe.DynamicAccess;
 
 	/** Creates a new tag. **/
 	public function new(?data: DynamicAccess<Any>) if (data != null) {
-		if (data.exists("commit") && Reflect.isObject(data["commit"])) commit = new CommitMeta(data["commit"]);
+		if (data.exists("commit") && Type.typeof(data["commit"]) == TObject) commit = new CommitMeta(data["commit"]);
 		if (data.exists("id") && Std.isOfType(data["id"], String)) id = data["id"];
 		if (data.exists("name") && Std.isOfType(data["name"], String)) name = data["name"];
 		if (data.exists("tarball_url") && Std.isOfType(data["tarball_url"], String)) tarballUrl = data["tarball_url"];

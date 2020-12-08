@@ -24,7 +24,7 @@ import haxe.DynamicAccess;
 	public function new(?data: DynamicAccess<Any>) if (data != null) {
 		if (data.exists("payload") && Std.isOfType(data["payload"], String)) payload = data["payload"];
 		if (data.exists("reason") && Std.isOfType(data["reason"], String)) reason = data["reason"];
-		if (data.exists("signer") && Reflect.isObject(data["signer"])) signer = new PayloadUser(data["signer"]);
+		if (data.exists("signer") && Type.typeof(data["signer"]) == TObject) signer = new PayloadUser(data["signer"]);
 		if (data.exists("signature") && Std.isOfType(data["signature"], String)) signature = data["signature"];
 		if (data.exists("verified") && Std.isOfType(data["verified"], Bool)) isVerified = data["verified"];
 	}

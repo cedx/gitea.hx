@@ -97,19 +97,19 @@ class PushEvent {
 			if (\Reflect::hasField($data, "compare_url") && is_string(\Reflect::field($data, "compare_url"))) {
 				$this->compareUrl = \Reflect::field($data, "compare_url");
 			}
-			if (\Reflect::hasField($data, "pusher") && \Reflect::isObject(\Reflect::field($data, "pusher"))) {
+			if (\Reflect::hasField($data, "pusher") && (\Type::typeof(\Reflect::field($data, "pusher")) === \ValueType::TObject())) {
 				$this->pusher = new User(\Reflect::field($data, "pusher"));
 			}
 			if (\Reflect::hasField($data, "ref") && is_string(\Reflect::field($data, "ref"))) {
 				$this->ref = \Reflect::field($data, "ref");
 			}
-			if (\Reflect::hasField($data, "repository") && \Reflect::isObject(\Reflect::field($data, "repository"))) {
+			if (\Reflect::hasField($data, "repository") && (\Type::typeof(\Reflect::field($data, "repository")) === \ValueType::TObject())) {
 				$this->repository = new Repository(\Reflect::field($data, "repository"));
 			}
 			if (\Reflect::hasField($data, "secret") && is_string(\Reflect::field($data, "secret"))) {
 				$this->secret = \Reflect::field($data, "secret");
 			}
-			if (\Reflect::hasField($data, "sender") && \Reflect::isObject(\Reflect::field($data, "sender"))) {
+			if (\Reflect::hasField($data, "sender") && (\Type::typeof(\Reflect::field($data, "sender")) === \ValueType::TObject())) {
 				$this->sender = new User(\Reflect::field($data, "sender"));
 			}
 		}

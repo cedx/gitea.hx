@@ -6,7 +6,7 @@
 namespace gitea\hook;
 
 use \php\Boot;
-use \gitea\DateTools;
+use \tink\_Stringly\Stringly_Impl_;
 
 /**
  * Represents a commit.
@@ -85,10 +85,10 @@ class PayloadCommit {
 			if (\Reflect::hasField($data, "added") && (\Reflect::field($data, "added") instanceof \Array_hx)) {
 				$this->added = \Reflect::field($data, "added");
 			}
-			if (\Reflect::hasField($data, "author") && \Reflect::isObject(\Reflect::field($data, "author"))) {
+			if (\Reflect::hasField($data, "author") && (\Type::typeof(\Reflect::field($data, "author")) === \ValueType::TObject())) {
 				$this->author = new PayloadUser(\Reflect::field($data, "author"));
 			}
-			if (\Reflect::hasField($data, "committer") && \Reflect::isObject(\Reflect::field($data, "committer"))) {
+			if (\Reflect::hasField($data, "committer") && (\Type::typeof(\Reflect::field($data, "committer")) === \ValueType::TObject())) {
 				$this->committer = new PayloadUser(\Reflect::field($data, "committer"));
 			}
 			if (\Reflect::hasField($data, "id") && is_string(\Reflect::field($data, "id"))) {
@@ -104,12 +104,12 @@ class PayloadCommit {
 				$this->removed = \Reflect::field($data, "removed");
 			}
 			if (\Reflect::hasField($data, "timestamp") && is_string(\Reflect::field($data, "timestamp"))) {
-				$this->timestamp = DateTools::parseIsoString(\Reflect::field($data, "timestamp"));
+				$this->timestamp = Stringly_Impl_::toDate(\Reflect::field($data, "timestamp"));
 			}
 			if (\Reflect::hasField($data, "url") && is_string(\Reflect::field($data, "url"))) {
 				$this->url = \Reflect::field($data, "url");
 			}
-			if (\Reflect::hasField($data, "verification") && \Reflect::isObject(\Reflect::field($data, "verification"))) {
+			if (\Reflect::hasField($data, "verification") && (\Type::typeof(\Reflect::field($data, "verification")) === \ValueType::TObject())) {
 				$this->verification = new PayloadCommitVerification(\Reflect::field($data, "verification"));
 			}
 		}

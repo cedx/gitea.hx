@@ -1,8 +1,8 @@
 package gitea.repository;
 
-import gitea.DateTools;
 import gitea.user.User;
 import haxe.DynamicAccess;
+import tink.Stringly;
 
 /** Represents a repository. **/
 @:expose class Repository {
@@ -136,12 +136,12 @@ import haxe.DynamicAccess;
 		if (data.exists("archived") && Std.isOfType(data["archived"], Bool)) isArchived = data["archived"];
 		if (data.exists("avatar_url") && Std.isOfType(data["avatar_url"], String)) avatarUrl = data["avatar_url"];
 		if (data.exists("clone_url") && Std.isOfType(data["clone_url"], String)) cloneUrl = data["clone_url"];
-		if (data.exists("created_at") && Std.isOfType(data["created_at"], String)) createdAt = DateTools.parseIsoString(data["created_at"]);
+		if (data.exists("created_at") && Std.isOfType(data["created_at"], String)) createdAt = (data["created_at"]: Stringly);
 		if (data.exists("default_branch") && Std.isOfType(data["default_branch"], String)) defaultBranch = data["default_branch"];
 		if (data.exists("description") && Std.isOfType(data["description"], String)) description = data["description"];
 		if (data.exists("empty") && Std.isOfType(data["empty"], Bool)) isEmpty = data["empty"];
-		if (data.exists("external_tracker") && Reflect.isObject(data["external_tracker"])) externalTracker = new ExternalTracker(data["external_tracker"]);
-		if (data.exists("external_wiki") && Reflect.isObject(data["external_wiki"])) externalWiki = new ExternalWiki(data["external_wiki"]);
+		if (data.exists("external_tracker") && Type.typeof(data["external_tracker"]) == TObject) externalTracker = new ExternalTracker(data["external_tracker"]);
+		if (data.exists("external_wiki") && Type.typeof(data["external_wiki"]) == TObject) externalWiki = new ExternalWiki(data["external_wiki"]);
 		if (data.exists("fork") && Std.isOfType(data["fork"], Bool)) isFork = data["fork"];
 		if (data.exists("forks_count") && Std.isOfType(data["forks_count"], Int)) forksCount = data["forks_count"];
 		if (data.exists("full_name") && Std.isOfType(data["full_name"], String)) fullName = data["full_name"];
@@ -151,22 +151,22 @@ import haxe.DynamicAccess;
 		if (data.exists("html_url") && Std.isOfType(data["html_url"], String)) htmlUrl = data["html_url"];
 		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
 		if (data.exists("ignore_whitespace_conflicts") && Std.isOfType(data["ignore_whitespace_conflicts"], Bool)) ignoreWhitespaceConflicts = data["ignore_whitespace_conflicts"];
-		if (data.exists("internal_tracker") && Reflect.isObject(data["internal_tracker"])) internalTracker = new InternalTracker(data["internal_tracker"]);
+		if (data.exists("internal_tracker") && Type.typeof(data["internal_tracker"]) == TObject) internalTracker = new InternalTracker(data["internal_tracker"]);
 		if (data.exists("mirror") && Std.isOfType(data["mirror"], Bool)) isMirror = data["mirror"];
 		if (data.exists("name") && Std.isOfType(data["name"], String)) name = data["name"];
 		if (data.exists("open_issues_count") && Std.isOfType(data["open_issues_count"], Int)) openIssuesCount = data["open_issues_count"];
 		if (data.exists("open_pr_counter") && Std.isOfType(data["open_pr_counter"], Int)) openPullRequestsCount = data["open_pr_counter"];
 		if (data.exists("original_url") && Std.isOfType(data["original_url"], String)) originalUrl = data["original_url"];
-		if (data.exists("owner") && Reflect.isObject(data["owner"])) owner = new User(data["owner"]);
-		if (data.exists("parent") && Reflect.isObject(data["parent"])) parent = new Repository(data["parent"]);
-		if (data.exists("permissions") && Reflect.isObject(data["permissions"])) permissions = new Permission(data["permissions"]);
+		if (data.exists("owner") && Type.typeof(data["owner"]) == TObject) owner = new User(data["owner"]);
+		if (data.exists("parent") && Type.typeof(data["parent"]) == TObject) parent = new Repository(data["parent"]);
+		if (data.exists("permissions") && Type.typeof(data["permissions"]) == TObject) permissions = new Permission(data["permissions"]);
 		if (data.exists("private") && Std.isOfType(data["private"], Bool)) isPrivate = data["private"];
 		if (data.exists("release_counter") && Std.isOfType(data["release_counter"], Int)) releasesCount = data["release_counter"];
 		if (data.exists("size") && Std.isOfType(data["size"], Int)) size = data["size"];
 		if (data.exists("ssh_url") && Std.isOfType(data["ssh_url"], String)) sshUrl = data["ssh_url"];
 		if (data.exists("stars_count") && Std.isOfType(data["stars_count"], Int)) starsCount = data["stars_count"];
 		if (data.exists("template") && Std.isOfType(data["template"], Bool)) isTemplate = data["template"];
-		if (data.exists("updated_at") && Std.isOfType(data["updated_at"], String)) updatedAt = DateTools.parseIsoString(data["updated_at"]);
+		if (data.exists("updated_at") && Std.isOfType(data["updated_at"], String)) updatedAt = (data["updated_at"]: Stringly);
 		if (data.exists("watchers_count") && Std.isOfType(data["watchers_count"], Int)) watchersCount = data["watchers_count"];
 		if (data.exists("website") && Std.isOfType(data["website"], String)) website = data["website"];
 	}

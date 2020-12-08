@@ -52,7 +52,7 @@ class Tag {
 		$this->id = "";
 		$this->commit = null;
 		if ($data !== null) {
-			if (\Reflect::hasField($data, "commit") && \Reflect::isObject(\Reflect::field($data, "commit"))) {
+			if (\Reflect::hasField($data, "commit") && (\Type::typeof(\Reflect::field($data, "commit")) === \ValueType::TObject())) {
 				$this->commit = new CommitMeta(\Reflect::field($data, "commit"));
 			}
 			if (\Reflect::hasField($data, "id") && is_string(\Reflect::field($data, "id"))) {

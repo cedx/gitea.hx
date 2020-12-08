@@ -1,7 +1,7 @@
 package gitea.issue;
 
-import gitea.DateTools;
 import haxe.DynamicAccess;
+import tink.Stringly;
 
 /** Represents a running stopwatch. **/
 @:expose class StopWatch {
@@ -14,7 +14,7 @@ import haxe.DynamicAccess;
 
 	/** Creates a new stopwatch. **/
 	public function new(?data: DynamicAccess<Any>) if (data != null) {
-		if (data.exists("created") && Std.isOfType(data["created"], String)) created = DateTools.parseIsoString(data["created"]);
+		if (data.exists("created") && Std.isOfType(data["created"], String)) created = (data["created"]: Stringly);
 		if (data.exists("issue_index") && Std.isOfType(data["issue_index"], Int)) issueIndex = data["issue_index"];
 	}
 }

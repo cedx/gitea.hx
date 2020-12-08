@@ -36,7 +36,7 @@ import haxe.DynamicAccess;
 		if (data.exists("id") && Std.isOfType(data["id"], Int)) id = data["id"];
 		if (data.exists("includes_all_repositories") && Std.isOfType(data["includes_all_repositories"], Bool)) includesAllRepositories = data["includes_all_repositories"];
 		if (data.exists("name") && Std.isOfType(data["name"], String)) name = data["name"];
-		if (data.exists("organization") && Reflect.isObject(data["organization"])) organization = new Organization(data["organization"]);
+		if (data.exists("organization") && Type.typeof(data["organization"]) == TObject) organization = new Organization(data["organization"]);
 		if (data.exists("permission") && Std.isOfType(data["permission"], String)) permission = data["permission"];
 		if (data.exists("units") && Std.isOfType(data["units"], Array)) units = data["units"];
 	}
