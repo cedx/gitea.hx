@@ -22,6 +22,29 @@ jobs:
           haxelib set tink_core 1.27.1 --always
       - name: Run tests
         run: haxe test_eval.hxml
+  hl:
+    runs-on: windows-latest
+    steps:
+      - name: Set up Haxe
+        uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.1.4
+      - name: Set up HashLink
+        shell: pwsh
+        run: |
+          Invoke-WebRequest https://github.com/HaxeFoundation/hashlink/releases/download/1.11/hl-1.11.0-win.zip -OutFile var/hashlink.zip
+          Expand-Archive var/hashlink.zip var/hashlink
+          Write-Output "$(Resolve-Path var/hashlink/hl-1.11.0-win)" >> $GITHUB_PATH
+      - name: Check environment
+        run: hl --version
+      - name: Fetch sources
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          haxelib install all --always
+          haxelib set tink_core 1.27.1 --always
+      - name: Run tests
+        run: haxe test_hl.hxml
   js:
     runs-on: ubuntu-latest
     steps:
