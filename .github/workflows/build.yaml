@@ -25,6 +25,8 @@ jobs:
   hl:
     runs-on: windows-latest
     steps:
+      - name: Fetch sources
+        uses: actions/checkout@v2
       - name: Set up Haxe
         uses: krdlab/setup-haxe@v1
         with:
@@ -37,8 +39,6 @@ jobs:
           Add-Content $Env:GITHUB_PATH (Resolve-Path hashlink/hl-1.11.0-win) -NoNewline
       - name: Check environment
         run: hl --version
-      - name: Fetch sources
-        uses: actions/checkout@v2
       - name: Install dependencies
         run: |
           haxelib install all --always
