@@ -32,9 +32,9 @@ jobs:
       - name: Set up HashLink
         shell: pwsh
         run: |
-          Invoke-WebRequest https://github.com/HaxeFoundation/hashlink/releases/download/1.11/hl-1.11.0-win.zip -OutFile var/hashlink.zip
-          Expand-Archive var/hashlink.zip var/hashlink
-          Write-Output "$(Resolve-Path var/hashlink/hl-1.11.0-win)" >> $GITHUB_PATH
+          Invoke-WebRequest https://github.com/HaxeFoundation/hashlink/releases/download/1.11/hl-1.11.0-win.zip -OutFile hashlink.zip
+          Expand-Archive hashlink.zip hashlink
+          Write-Output "$(Resolve-Path hashlink/hl-1.11.0-win)" >> $GITHUB_PATH
       - name: Check environment
         run: hl --version
       - name: Fetch sources
