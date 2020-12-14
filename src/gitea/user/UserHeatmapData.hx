@@ -1,6 +1,7 @@
 package gitea.user;
 
 import haxe.DynamicAccess;
+using DateTools;
 
 /** Represents the data needed to create a user heatmap. **/
 @:expose class UserHeatmapData {
@@ -14,6 +15,6 @@ import haxe.DynamicAccess;
 	/** Creates a new heatmap data. **/
 	public function new(?data: DynamicAccess<Int>) if (data != null) {
 		if (data.exists("contributions")) contributions = data["contributions"];
-		if (data.exists("timestamp")) timestamp = Date.fromTime(data["timestamp"] * 1000);
+		if (data.exists("timestamp")) timestamp = Date.fromTime(data["timestamp"].seconds());
 	}
 }
