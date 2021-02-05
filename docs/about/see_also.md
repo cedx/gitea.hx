@@ -1,8 +1,8 @@
 # See also
 
 ## Development
-- [API reference](https://api.belin.io/gitea.hx)
-- [Submit an issue](https://git.belin.io/cedx/gitea.hx/issues)
+- [API reference](https://cedx.github.io/gitea.hx/api)
+- [Submit an issue](https://github.com/cedx/gitea.hx/issues)
 
 ## Packages
 - Haxe: `gitea` on [Haxelib](https://lib.haxe.org/p/gitea)

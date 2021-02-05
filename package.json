@@ -1,10 +1,11 @@
 {
-	"bugs": "https://git.belin.io/cedx/gitea.hx/issues",
+	"bugs": "https://github.com/cedx/gitea.hx/issues",
 	"description": "Gitea client library.",
-	"homepage": "https://docs.belin.io/gitea.hx",
+	"homepage": "https://cedx.github.io/gitea.hx",
 	"license": "MIT",
 	"main": "./lib/js/index.js",
 	"name": "@cedx/gitea",
+	"repository": "cedx/gitea.hx",
 	"type": "commonjs",
 	"version": "0.2.2",
 	"author": {
@@ -39,10 +40,6 @@
 		"scm",
 		"vcs"
 	],
-	"repository": {
-		"type": "git",
-		"url": "https://git.belin.io/cedx/gitea.hx.git"
-	},
 	"scripts": {
 		"coverage": "coveralls var/lcov.info",
 		"dist": "terser --config-file=etc/terser.json --output=build/gitea.min.js build/gitea.js",

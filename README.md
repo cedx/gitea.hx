@@ -11,8 +11,8 @@
 > This project is a **work in progress**.
 
 ## Documentation
-- [User guide](https://docs.belin.io/gitea.hx)
-- [API reference](https://api.belin.io/gitea.hx)
+- [User guide](https://cedx.github.io/gitea.hx)
+- [API reference](https://cedx.github.io/gitea.hx/api)
 
 ## Packages
 - Haxe: `gitea` on [Haxelib](https://lib.haxe.org/p/gitea)
@@ -20,8 +20,8 @@
 - PHP: `cedx/gitea` on [Packagist](https://packagist.org/packages/cedx/gitea)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/gitea.hx)
-- [Submit an issue](https://git.belin.io/cedx/gitea.hx/issues)
+- [Git repository](https://github.com/cedx/gitea.hx)
+- [Submit an issue](https://github.com/cedx/gitea.hx/issues)
 
 ## License
-[Gitea.hx](https://docs.belin.io/gitea.hx) is distributed under the MIT License.
+[Gitea.hx](https://cedx.github.io/gitea.hx) is distributed under the MIT License.
